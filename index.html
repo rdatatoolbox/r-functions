@@ -13,7 +13,7 @@
 <link href="index_files/libs/quarto-contrib/academicons-1.9.2/size.css" rel="stylesheet"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.8.26">
 
-  <title>Presentation title</title>
+  <title>Writing functions</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -98,7 +98,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-acd4c6f6173a03f0491efd971e37f44f.css">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-2482a80e8fed937be72612e9dd34d75c.css">
   <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -208,10 +208,10 @@
 <p><img data-src="images/logo-title-slide.png"></p>
 </div><!-- Title slide content --><div class="column information" style="width:68%;">
 <div class="title">
-<p>Quarto template</p>
+<p>Code refactoring</p>
 </div>
 <div class="subtitle">
-<p>HTML presentation w/ RevealJS framework</p>
+<p>Writing and documenting <i class="fa-brands fa-r-project" aria-label="r-project"></i>&nbsp; functions</p>
 </div>
 <div class="date">
 <p>November 2025</p>
@@ -257,157 +257,403 @@ Author name<br/>
 </div>
 <!-- Close {.title-slide-container} -->
 </div>
-<!-- Insert section 'Table of contents' -->
+<!-- Insert section 'Quarto basics' -->
 </section>
-<section>
-<section id="table-of-contents" class="title-slide slide level1 center">
-<h1>Table of contents</h1>
+<section id="whats-a-function" class="slide level2">
+<h2>What’s a function?</h2>
+<div class="fragment">
+<blockquote>
+<p>A function is a <strong>block of code</strong> organized together to perform a specific task and only runs when it is called. It can have <strong>parameters</strong> and can <strong>return</strong> a result.</p>
+</blockquote>
+<p><br></p>
+</div>
+<div class="fragment">
+<p><i class="fa-solid fa-circle-right" aria-label="circle-right"></i> &nbsp;<strong>Automate</strong> common and repetitive tasks</p>
+</div>
+<div class="fragment">
+<p><i class="fa-solid fa-circle-right" aria-label="circle-right"></i> &nbsp;Increase <strong>reproducibility</strong> and <strong>readability</strong> of the code</p>
+</div>
+<div class="fragment">
+<p><br><br></p>
+<p><strong>Advantages</strong><sup>1</sup></p>
+<ul>
+<li>You can give a function an <strong>evocative name</strong> that makes your code easier to understand.</li>
+<li>As requirements change, you only need to <strong>update code in one place</strong>, instead of many.</li>
+<li>You <strong>eliminate</strong> the chance of making <strong>incidental mistakes</strong> when you copy and paste.</li>
+<li>It makes it <strong>easier to reuse</strong> work from project-to-project, increasing your productivity over time.</li>
+</ul>
+</div>
+<aside><ol class="aside-footnotes"><li id="fn1"><p>R for Data Science (2<sup>e</sup> ed.) <a href="https://r4ds.hadley.nz/functions.html" class="uri">https://r4ds.hadley.nz/functions.html</a></p></li></ol></aside></section>
+<section id="when-to-write-a-function" class="slide level2">
+<h2>When to write a function?</h2>
+<p><br><br></p>
+<div class="center">
+<div class="boxed">
+<p><strong>Same code reused twice</strong> <br> (do not repeat yourself)</p>
+</div>
+<p><em>and/or</em></p>
+<div class="boxed">
+<p><strong>Reduce code complexity</strong> <br> (workflow modularity)</p>
+</div>
+<p><em>and/or</em></p>
+<div class="boxed">
+<p><strong>Improve code organisation</strong> <br> (workflow readability)</p>
+</div>
+</div>
+</section>
+<section id="writing-a-function" class="slide level2">
+<h2>Writing a function</h2>
+<div class="columns">
+<div class="column" style="width:45%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="do">## Function definition ----</span></span>
+<span id="cb1-2"><a href=""></a></span>
+<span id="cb1-3"><a href=""></a>function_name <span class="ot">&lt;-</span> <span class="cf">function</span>(input) {</span>
+<span id="cb1-4"><a href=""></a>  </span>
+<span id="cb1-5"><a href=""></a>  <span class="co"># Body </span></span>
+<span id="cb1-6"><a href=""></a>  <span class="co"># of the function</span></span>
+<span id="cb1-7"><a href=""></a>  </span>
+<span id="cb1-8"><a href=""></a>  <span class="fu">return</span>(output)</span>
+<span id="cb1-9"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div><div class="column" style="width:10%;">
 
+</div><div class="column" style="width:45%;">
+<ul>
+<li>A function is defined by calling <strong><code>function()</code></strong></li>
+<li>A function can have a (evocative) <strong>name</strong><sup>1</sup></li>
+<li>A function can have 0, 1 or many <strong>arguments</strong> (inputs)</li>
+<li>A function can <strong>return</strong> a value (output)</li>
+</ul>
+</div></div>
+<div class="fragment">
+<p><br><br></p>
+<p><i class="fa-solid fa-circle-arrow-right" aria-label="circle-arrow-right"></i>&nbsp; A <strong>two-step</strong> process</p>
+<p><br></p>
+<div class="columns">
+<div class="column" style="width:45%;">
+<p><strong>1. Definition</strong> of the function</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a><span class="do">## Function definition ----</span></span>
+<span id="cb2-2"><a href=""></a></span>
+<span id="cb2-3"><a href=""></a>arithmetic_mean <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb2-4"><a href=""></a>  </span>
+<span id="cb2-5"><a href=""></a>  y <span class="ot">&lt;-</span> <span class="fu">sum</span>(x) <span class="sc">/</span> <span class="fu">length</span>(x)</span>
+<span id="cb2-6"><a href=""></a>  </span>
+<span id="cb2-7"><a href=""></a>  <span class="fu">return</span>(y)</span>
+<span id="cb2-8"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div><div class="column" style="width:10%;">
+
+</div><div class="column" style="width:45%;">
+<p><strong>2. Call</strong> of the function</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a><span class="do">## Function call ----</span></span>
+<span id="cb3-2"><a href=""></a></span>
+<span id="cb3-3"><a href=""></a><span class="fu">arithmetic_mean</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">5</span>, <span class="dv">10</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div></div>
+</div>
+<aside><ol class="aside-footnotes"><li id="fn2"><p>In <i class="fa-brands fa-r-project" aria-label="r-project"></i>&nbsp; there is also <strong>anonymous functions</strong> (also known as <strong>lambda functions</strong>):<br><code>function(x) sum(x) / length(x)</code><br>or in short: <code>\(x) sum(x) / length(x)</code></p></li></ol></aside></section>
+<section id="exiting-a-function" class="slide level2">
+<h2>Exiting a function</h2>
+<p><i class="fa-solid fa-circle-arrow-right" aria-label="circle-arrow-right"></i>&nbsp; Functions exit in two ways</p>
+<p><br><br></p>
+<div class="columns">
+<div class="column" style="width:45%;">
+<div class="center">
+<p><span class="green"><i class="fa-solid fa-check fa-2xl" aria-label="check"></i></span></p>
+<p><br></p>
+<p><strong>Success</strong></p>
+<p>i.e.&nbsp;return a value w/ <strong><code>return()</code></strong></p>
+</div>
+</div><div class="column" style="width:10%;">
+
+</div><div class="column" style="width:45%;">
+<div class="center">
+<p><span class="red"><i class="fa-solid fa-xmark fa-2xl" aria-label="xmark"></i></span></p>
+<p><br></p>
+<p><strong>Failure</strong></p>
+<p>i.e.&nbsp;throw an error w/ <strong><code>stop()</code></strong></p>
+</div>
+</div></div>
 </section>
-<section id="table-of-contents-1" class="slide level2">
-<h2>Table of contents</h2>
-<p><br> <br> <br> <br> <br> <br></p>
+<section id="function-return" class="slide level2">
+<h2>Function return</h2>
+<p><i class="fa-solid fa-circle-arrow-right" aria-label="circle-arrow-right"></i>&nbsp; A function only <strong>returns one single object</strong></p>
+<p><br></p>
+<div class="columns">
+<div class="column center" style="width:45%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a>arithmetic_mean <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb4-2"><a href=""></a>  </span>
+<span id="cb4-3"><a href=""></a>  y <span class="ot">&lt;-</span> <span class="fu">sum</span>(x) <span class="sc">/</span> <span class="fu">length</span>(x)</span>
+<span id="cb4-4"><a href=""></a>  </span>
+<span id="cb4-5"><a href=""></a>  <span class="fu">return</span>(y)</span>
+<span id="cb4-6"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div><div class="column center" style="width:10%;">
+
+</div><div class="column center" style="width:45%;">
+
+</div></div>
+<div class="fragment">
+<p><br></p>
+<p><i class="fa-solid fa-circle-arrow-right" aria-label="circle-arrow-right"></i>&nbsp; Use <strong><code>list()</code></strong> if you want to return more that one object</p>
+<p><br></p>
+<div class="columns">
+<div class="column center" style="width:45%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a>function_name <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb5-2"><a href=""></a>  </span>
+<span id="cb5-3"><a href=""></a>  <span class="co"># ...</span></span>
+<span id="cb5-4"><a href=""></a></span>
+<span id="cb5-5"><a href=""></a>  result <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb5-6"><a href=""></a>    object_1,</span>
+<span id="cb5-7"><a href=""></a>    object_2,</span>
+<span id="cb5-8"><a href=""></a>    ...</span>
+<span id="cb5-9"><a href=""></a>  )</span>
+<span id="cb5-10"><a href=""></a>  </span>
+<span id="cb5-11"><a href=""></a>  <span class="fu">return</span>(result)</span>
+<span id="cb5-12"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div><div class="column center" style="width:10%;">
+
+</div><div class="column center" style="width:45%;">
+
+</div></div>
+</div>
+</section>
+<section id="function-return-1" class="slide level2">
+<h2>Function return</h2>
+<p><i class="fa-solid fa-circle-arrow-right" aria-label="circle-arrow-right"></i>&nbsp; In most cases, you can <strong>omit</strong> the keyword <strong><code>return()</code></strong>: this is called an <strong>implicit return</strong></p>
+<div class="fragment">
+<p><br></p>
 <div class="columns">
 <div class="column center" style="width:33%;">
-<p><i class="fa-solid fa-code fa-2x" aria-label="code"></i> <br> Section 1</p>
-</div><div class="column center" style="width:33%;">
-<p><i class="fa-brands fa-github fa-2x" aria-label="github"></i> <br> Section 2</p>
-</div><div class="column center" style="width:33%;">
-<p><i class="fa-solid fa-book fa-2x" aria-label="book"></i> <br> Resources</p>
-</div></div>
-<!-- Insert section 'Quarto basics' -->
-</section></section>
-<section>
-<section id="section-1" class="title-slide slide level1 center">
-<h1>Section 1</h1>
-
-</section>
-<section id="slide-title" class="slide level2">
-<h2>Slide title</h2>
-<p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit<sup>1</sup>…</p>
-<p><br></p>
-<div class="columns">
-<div class="column" style="width:50%;">
-<p><strong>Left column</strong></p>
-<p>Neque porro quisquam est qui dolorem ipsum.</p>
-<p><img data-src="images/logo-title-slide.png" style="width:25.0%"></p>
-</div><div class="column center" style="width:50%;">
-<p><strong>Right column (content centered)</strong></p>
-<p>Neque porro quisquam est qui dolorem ipsum.</p>
-<p><img data-src="images/logo-title-slide.png" style="width:50.0%"></p>
-</div></div>
-<p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit…</p>
-<aside><ol class="aside-footnotes"><li id="fn1"><p>This is a footnote.</p></li></ol></aside></section></section>
-<section>
-<section id="section-2" class="title-slide slide level1 center">
-<h1>Section 2</h1>
-
-</section>
-<section id="slide-title-1" class="slide level2">
-<h2>Slide title</h2>
-<div class="columns">
-<div class="column" style="width:30%;">
-<p><strong>Left column</strong></p>
-<p>Neque porro quisquam est.</p>
-<p><img data-src="images/logo-title-slide.png" style="width:55.0%"></p>
-</div><div class="column" style="width:70%;">
-<p><strong>Right column</strong></p>
-<p>Neque porro quisquam est qui dolorem ipsum.</p>
-<table class="caption-top" style="width:100%;">
-<caption>Table 1: Table caption</caption>
-<colgroup>
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Header 1</th>
-<th style="text-align: center;">Header 2</th>
-<th style="text-align: right;">Header 3</th>
-<th style="text-align: right;">Header 4</th>
-<th style="text-align: right;">Header 5</th>
-<th style="text-align: right;">Header 6</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Row 1 Col 1</td>
-<td style="text-align: center;">Row 1 Col 2</td>
-<td style="text-align: right;">Row 1 Col 3</td>
-<td style="text-align: right;">Row 1 Col 4</td>
-<td style="text-align: right;">Row 1 Col 5</td>
-<td style="text-align: right;">Row 1 Col 6</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Row 2 Col 1</td>
-<td style="text-align: center;">Row 2 Col 2</td>
-<td style="text-align: right;">Row 2 Col 3</td>
-<td style="text-align: right;">Row 2 Col 4</td>
-<td style="text-align: right;">Row 2 Col 5</td>
-<td style="text-align: right;">Row 2 Col 6</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Row 3 Col 1</td>
-<td style="text-align: center;">Row 3 Col 2</td>
-<td style="text-align: right;">Row 3 Col 3</td>
-<td style="text-align: right;">Row 3 Col 4</td>
-<td style="text-align: right;">Row 3 Col 5</td>
-<td style="text-align: right;">Row 3 Col 6</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Row 4 Col 1</td>
-<td style="text-align: center;">Row 4 Col 2</td>
-<td style="text-align: right;">Row 4 Col 3</td>
-<td style="text-align: right;">Row 4 Col 4</td>
-<td style="text-align: right;">Row 4 Col 5</td>
-<td style="text-align: right;">Row 4 Col 6</td>
-</tr>
-</tbody>
-</table>
-</div></div>
-<p><br></p>
-<p>Insert icons with <a href="https://fontawesome.com/search">Font Awesome</a> <i class="fa-brands fa-github" aria-label="github"></i> or <a href="https://jpswalsh.github.io/academicons/">Academicons</a> <i class="ai  ai-sci-hub"></i></p>
-<p><br></p>
-<div class="columns">
-<div class="column" style="width:50%;">
-
-</div><div class="column" style="width:50%;">
+<p><span class="small"><strong>Explicit return</strong></span></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="co"># Block code with unicode symbol ----</span></span>
-<span id="cb1-2"><a href=""></a>x <span class="ot">&lt;-</span> <span class="st">"I \u2665 Quarto"</span></span>
-<span id="cb1-3"><a href=""></a><span class="fu">print</span>(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "I ♥ Quarto"</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a>arithmetic_mean <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb6-2"><a href=""></a>  </span>
+<span id="cb6-3"><a href=""></a>  y <span class="ot">&lt;-</span> <span class="fu">sum</span>(x) <span class="sc">/</span> <span class="fu">length</span>(x)</span>
+<span id="cb6-4"><a href=""></a>  </span>
+<span id="cb6-5"><a href=""></a>  <span class="fu">return</span>(y)</span>
+<span id="cb6-6"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+</div><div class="column center" style="width:33%;">
+<p><span class="small"><strong>Implicit return</strong></span></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a>arithmetic_mean <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb7-2"><a href=""></a>  </span>
+<span id="cb7-3"><a href=""></a>  y <span class="ot">&lt;-</span> <span class="fu">sum</span>(x) <span class="sc">/</span> <span class="fu">length</span>(x)</span>
+<span id="cb7-4"><a href=""></a>  </span>
+<span id="cb7-5"><a href=""></a>  y</span>
+<span id="cb7-6"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div><div class="column center" style="width:33%;">
+
+</div></div>
+</div>
+</section>
+<section id="function-return-2" class="slide level2">
+<h2>Function return</h2>
+<p><i class="fa-solid fa-circle-arrow-right" aria-label="circle-arrow-right"></i>&nbsp; In most cases, you can <strong>omit</strong> the keyword <strong><code>return()</code></strong>: this is called an <strong>implicit return</strong></p>
+<p><br></p>
+<div class="columns">
+<div class="column center" style="width:33%;">
+<p><span class="small"><strong>Explicit return</strong></span></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a>arithmetic_mean <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb8-2"><a href=""></a>  </span>
+<span id="cb8-3"><a href=""></a>  y <span class="ot">&lt;-</span> <span class="fu">sum</span>(x) <span class="sc">/</span> <span class="fu">length</span>(x)</span>
+<span id="cb8-4"><a href=""></a>  </span>
+<span id="cb8-5"><a href=""></a>  <span class="fu">return</span>(y)</span>
+<span id="cb8-6"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div><div class="column center" style="width:33%;">
+<p><span class="small"><strong>Implicit return</strong></span></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a>arithmetic_mean <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb9-2"><a href=""></a>  </span>
+<span id="cb9-3"><a href=""></a>  y <span class="ot">&lt;-</span> <span class="fu">sum</span>(x) <span class="sc">/</span> <span class="fu">length</span>(x)</span>
+<span id="cb9-4"><a href=""></a>  </span>
+<span id="cb9-5"><a href=""></a>  y</span>
+<span id="cb9-6"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div><div class="column center" style="width:33%;">
+<p><span class="small"><strong>Implicit return &amp; simplification</strong></span></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a>arithmetic_mean <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb10-2"><a href=""></a>  </span>
+<span id="cb10-3"><a href=""></a>  <span class="fu">sum</span>(x) <span class="sc">/</span> <span class="fu">length</span>(x)</span>
+<span id="cb10-4"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div></div>
-</section></section>
-<section>
-<section id="resources" class="title-slide slide level1 center">
-<h1>Resources</h1>
+</section>
+<section id="function-return-3" class="slide level2">
+<h2>Function return</h2>
+<p><i class="fa-solid fa-circle-arrow-right" aria-label="circle-arrow-right"></i>&nbsp; But sometimes, you need an <strong>explicit return</strong></p>
+<div class="fragment">
+<p><br></p>
+<div class="columns">
+<div class="column center" style="width:45%;">
+<p><span class="small"><strong>Explicit returns</strong></span></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a>arithmetic_mean <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb11-2"><a href=""></a>  </span>
+<span id="cb11-3"><a href=""></a>  <span class="cf">if</span> (<span class="fu">any</span>(<span class="fu">is.na</span>(x))) {</span>
+<span id="cb11-4"><a href=""></a></span>
+<span id="cb11-5"><a href=""></a>    <span class="fu">return</span>(<span class="dv">0</span>)</span>
+<span id="cb11-6"><a href=""></a>  }</span>
+<span id="cb11-7"><a href=""></a></span>
+<span id="cb11-8"><a href=""></a>  y <span class="ot">&lt;-</span> <span class="fu">sum</span>(x) <span class="sc">/</span> <span class="fu">length</span>(x)</span>
+<span id="cb11-9"><a href=""></a>  </span>
+<span id="cb11-10"><a href=""></a>  <span class="fu">return</span>(y)</span>
+<span id="cb11-11"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div><div class="column center" style="width:10%;">
+
+</div><div class="column center" style="width:45%;">
+<p><span class="small"><strong>WRONG behaviour</strong></span></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a>arithmetic_mean <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb12-2"><a href=""></a>  </span>
+<span id="cb12-3"><a href=""></a>  <span class="cf">if</span> (<span class="fu">any</span>(<span class="fu">is.na</span>(x))) {</span>
+<span id="cb12-4"><a href=""></a></span>
+<span id="cb12-5"><a href=""></a>    <span class="dv">0</span></span>
+<span id="cb12-6"><a href=""></a>  }</span>
+<span id="cb12-7"><a href=""></a></span>
+<span id="cb12-8"><a href=""></a>  <span class="fu">sum</span>(x) <span class="sc">/</span> <span class="fu">length</span>(x)</span>
+<span id="cb12-9"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div></div>
+</div>
+<div class="fragment">
+<p><br></p>
+<div class="columns">
+<div class="column center" style="width:45%;">
+
+</div><div class="column center" style="width:10%;">
+
+</div><div class="column center" style="width:45%;">
+<p><span class="small"><strong>Explicit and implicit returns</strong></span></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a>arithmetic_mean <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb13-2"><a href=""></a>  </span>
+<span id="cb13-3"><a href=""></a>  <span class="cf">if</span> (<span class="fu">any</span>(<span class="fu">is.na</span>(x))) {</span>
+<span id="cb13-4"><a href=""></a></span>
+<span id="cb13-5"><a href=""></a>    <span class="fu">return</span>(<span class="dv">0</span>)</span>
+<span id="cb13-6"><a href=""></a>  }</span>
+<span id="cb13-7"><a href=""></a></span>
+<span id="cb13-8"><a href=""></a>  <span class="fu">sum</span>(x) <span class="sc">/</span> <span class="fu">length</span>(x)</span>
+<span id="cb13-9"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div></div>
+</div>
+</section>
+<section id="no-return" class="slide level2">
+<h2>No return</h2>
+<p><i class="fa-solid fa-circle-arrow-right" aria-label="circle-arrow-right"></i>&nbsp; Not all functions necessarily return an object</p>
+<p><br></p>
+<p>For instance,</p>
+<ul>
+<li>a function that downloads / saves a file on the disk</li>
+<li>a function that creates a plot (w/ <code>graphics</code>)</li>
+<li>a function that modifies a global option</li>
+<li>…</li>
+</ul>
+<div class="fragment">
+<p><br><br></p>
+<div class="columns">
+<div class="column" style="width:45%;">
+<p><i class="fa-solid fa-circle-arrow-right" aria-label="circle-arrow-right"></i>&nbsp; In that case, the function will return <strong><code>NULL</code></strong></p>
+</div><div class="column" style="width:10%;">
+
+</div><div class="column" style="width:45%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a><span class="co"># Define the function ----</span></span>
+<span id="cb14-2"><a href=""></a>save_as_csv <span class="ot">&lt;-</span> <span class="cf">function</span>(data) {</span>
+<span id="cb14-3"><a href=""></a></span>
+<span id="cb14-4"><a href=""></a>  <span class="fu">write.csv</span>(data, <span class="st">"filename.csv"</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb14-5"><a href=""></a>}</span>
+<span id="cb14-6"><a href=""></a></span>
+<span id="cb14-7"><a href=""></a><span class="co"># Create fake dataset ----</span></span>
+<span id="cb14-8"><a href=""></a>tab <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">y =</span> letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>])</span>
+<span id="cb14-9"><a href=""></a></span>
+<span id="cb14-10"><a href=""></a><span class="co"># Call the function ----</span></span>
+<span id="cb14-11"><a href=""></a>result <span class="ot">&lt;-</span> <span class="fu">save_as_csv</span>(<span class="at">data =</span> tab)</span>
+<span id="cb14-12"><a href=""></a></span>
+<span id="cb14-13"><a href=""></a>result</span>
+<span id="cb14-14"><a href=""></a><span class="do">## NULL</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div></div>
+</div>
+</section>
+<section id="invisible-return" class="slide level2">
+<h2>Invisible return</h2>
+<p><i class="fa-solid fa-circle-arrow-right" aria-label="circle-arrow-right"></i>&nbsp; Sometimes, you might want to make the function’s <strong>return invisible</strong> if it is <strong>not assigned</strong> to a variable with the function <strong><code>invisible()</code></strong></p>
+<p><br></p>
+<p>This behaviour is <em>usually</em> used:</p>
+<ul>
+<li>when the function returns <strong><code>NULL</code></strong></li>
+<li>when the return is not the main purpose of the function</li>
+</ul>
+<div class="fragment">
+<p><br><br></p>
+<div class="columns">
+<div class="column" style="width:45%;">
+<p><i class="fa-solid fa-circle-arrow-right" aria-label="circle-arrow-right"></i>&nbsp; If you don’t assigne the output of the function, it will no longer be accessible afterwards</p>
+<p><br></p>
+<p><i class="fa-solid fa-circle-arrow-right" aria-label="circle-arrow-right"></i>&nbsp; If you implement an invisible return, you have to <strong>store the output</strong> of the function in a <strong>variable</strong> and <strong>print this variable</strong></p>
+</div><div class="column" style="width:10%;">
+
+</div><div class="column" style="width:45%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a><span class="co"># Define the function ----</span></span>
+<span id="cb15-2"><a href=""></a>save_as_csv <span class="ot">&lt;-</span> <span class="cf">function</span>(data) {</span>
+<span id="cb15-3"><a href=""></a></span>
+<span id="cb15-4"><a href=""></a>  file_name <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"outputs"</span>, <span class="st">"filename.csv"</span>)</span>
+<span id="cb15-5"><a href=""></a>  <span class="fu">write.csv</span>(data, file_name, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb15-6"><a href=""></a></span>
+<span id="cb15-7"><a href=""></a>  <span class="fu">invisible</span>(file_name)</span>
+<span id="cb15-8"><a href=""></a>}</span>
+<span id="cb15-9"><a href=""></a></span>
+<span id="cb15-10"><a href=""></a><span class="co"># Call the function (no assignation, no return) ----</span></span>
+<span id="cb15-11"><a href=""></a><span class="fu">save_as_csv</span>(<span class="at">data =</span> tab)</span>
+<span id="cb15-12"><a href=""></a></span>
+<span id="cb15-13"><a href=""></a><span class="co"># Call the function (w/ assignation) ----</span></span>
+<span id="cb15-14"><a href=""></a>path <span class="ot">&lt;-</span> <span class="fu">save_as_csv</span>(<span class="at">data =</span> tab)</span>
+<span id="cb15-15"><a href=""></a></span>
+<span id="cb15-16"><a href=""></a>path</span>
+<span id="cb15-17"><a href=""></a><span class="do">## [1] '/home/user/documents/project_a/outputs/filename.csv'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div></div>
+</div>
+</section>
+<section id="to-do" class="slide level2">
+<h2>To do</h2>
+<ul>
+<li>Arguments</li>
+<li>Argument with default value</li>
+<li>Argument order</li>
+<li>… (dot-dot-dot)</li>
+<li>No argument</li>
+<li>Environments</li>
+<li>Error handling</li>
+<li>Assertive programming</li>
+<li>Calling external packages (<code>::</code>)</li>
+<li>Case study: from script to function</li>
+<li>Documenting a function</li>
+<li>Quiz</li>
+</ul>
 
 </section>
-<section id="resources-1" class="slide level2">
-<h2>Resources</h2>
-<ul>
-<li><a href="https://quarto.org/docs/guide/">Quarto guide</a></li>
-<li><a href="https://quarto.org/docs/authoring/markdown-basics.html">Markdown syntax</a></li>
-<li><a href="https://quarto.org/docs/presentations/revealjs/">RevealJS guide</a></li>
-</ul>
-<p><br></p>
-<p>To use this template, visit the <a href="https://github.com/biodiversitydata/quarto-template/wiki"><strong>Wiki</strong></a>.</p>
-
-</section></section>
 
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <p><img src="images/logo-affiliation.png" class="slide-logo"></p>
 <div class="footer footer-default">
-<p><i class="fa-brands fa-github" aria-label="github"></i> &nbsp;<a href="https://github.com/rdatatoolbox/quarto-template"><code>rdatatoolbox/quarto-template</code></a> &nbsp; • &nbsp; <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> <i class="fa-brands fa-creative-commons-by" aria-label="creative-commons-by"></i> &nbsp;<a href="https://creativecommons.org/licenses/by/4.0/deed.en"><code>cc-by-4.0</code></a></p>
+<p><i class="fa-brands fa-github" aria-label="github"></i> &nbsp;<a href="https://github.com/rdatatoolbox/r-functions"><code>rdatatoolbox/r-functions</code></a> &nbsp; • &nbsp; <i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> <i class="fa-brands fa-creative-commons-by" aria-label="creative-commons-by"></i> &nbsp;<a href="https://creativecommons.org/licenses/by/4.0/deed.en"><code>cc-by-4.0</code></a></p>
 </div>
 </div></div>
 

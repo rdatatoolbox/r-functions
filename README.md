@@ -1,21 +1,12 @@
-<!-- Delete the chunk from here... -->
-
-> [!IMPORTANT]
-> Please visit our [**Wiki**](https://github.com/rdatatoolbox/quarto-template/wiki) to learn more about this Template.
-
-<!-- ... to here -->
-
-
-
 <!-- Logo & Title -->
 
 <h1 align="center">
   <br>
   <img src="images/readme/logo-readme.png" alt="Logo" width="200">
   <br>
-  Quarto template
+  Code refactoring
   <br>
-  HTML presentation w/ RevealJS
+  Writing and documenting R functions
   <br>
 </h1>
 
@@ -24,7 +15,7 @@
 
 <br>
 <p align="center">
-  <a href="https://rdatatoolbox.github.io/quarto-template" target="_blank"><b>View presentation</b></a>
+  <a href="https://rdatatoolbox.github.io/r-functions" target="_blank"><b>View presentation</b></a>
 </p>
 <br>
 
@@ -46,13 +37,13 @@
   <br/>
   
   <!-- Quarto render -->
-  <a href="https://github.com/rdatatoolbox/quarto-template/actions/workflows/quarto-render.yml">
-    <img src="https://github.com/rdatatoolbox/quarto-template/actions/workflows/quarto-render.yml/badge.svg" alt="GHA render">
+  <a href="https://github.com/rdatatoolbox/r-functions/actions/workflows/quarto-render.yml">
+    <img src="https://github.com/rdatatoolbox/r-functions/actions/workflows/quarto-render.yml/badge.svg" alt="GHA render">
   </a>
   
   <!-- GitHub deployment -->
-  <a href="https://github.com/rdatatoolbox/quarto-template/actions/workflows/pages/pages-build-deployment">
-    <img src="https://github.com/rdatatoolbox/quarto-template/actions/workflows/pages/pages-build-deployment/badge.svg" alt="GHA deploy">
+  <a href="https://github.com/rdatatoolbox/r-functions/actions/workflows/pages/pages-build-deployment">
+    <img src="https://github.com/rdatatoolbox/r-functions/actions/workflows/pages/pages-build-deployment/badge.svg" alt="GHA deploy">
   </a>
 </p>
 
@@ -72,7 +63,7 @@
 
 ## Overview
 
-This repository contains files used to generate the online presentation [Quarto template](https://rdatatoolbox.github.io/quarto-template) based on [Quarto](https://quarto.org/) and the [RevealJS](https://quarto.org/docs/presentations/revealjs/) framework.
+This repository contains files used to generate the online presentation [Code refactoring](https://rdatatoolbox.github.io/r-functions) based on [Quarto](https://quarto.org/) and the [RevealJS](https://quarto.org/docs/presentations/revealjs/) framework.
 
 
 ## Usage
@@ -91,14 +82,14 @@ To understand the file organisation of this repository, please read this [Wiki](
 
 ## Citation
 
-Casajus N (2024) _A Quarto template for HTML presentation with RevealJS framework_. Online presentation available at <https://github.com/rdatatoolbox/quarto-template/>.
+Casajus N (2025) _Code refactoring: Writing and documenting R functions_. Online presentation available at <https://github.com/rdatatoolbox/r-functions/>.
 
 
 ## Contributing
 
-All types of contributions are encouraged and valued. For more information, check out our [Contributor Guidelines](https://github.com/rdatatoolbox/quarto-template/blob/main/CONTRIBUTING.md).
+All types of contributions are encouraged and valued. For more information, check out our [Contributor Guidelines](https://github.com/rdatatoolbox/r-functions/blob/main/CONTRIBUTING.md).
 
-Please note that the `quarto-template` project is released with a [Contributor Code of Conduct](https://contributor-covenant.org/version/2/1/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.
+Please note that the `r-functions` project is released with a [Contributor Code of Conduct](https://contributor-covenant.org/version/2/1/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.
 
 
 ## Acknowledgments

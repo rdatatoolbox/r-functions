@@ -1,7 +1,3 @@
-# Table of contents
-
----
-
 ## Table of contents
 
 <br>
@@ -14,21 +10,21 @@
 :::: { .columns }
 
 ::: { .column .center width="33%"}
-{{< fa code size=2x >}}
-<br>
-Section 1
+{{< fa right-to-bracket size=2x >}}
+<br><br>
+**Introduction**
 :::
 
 ::: { .column .center width="33%"}
-{{< fa brands github size=2x >}}
-<br>
-Section 2
+{{< fa code size=2x >}}
+<br><br>
+**Writing a function**
 :::
 
 ::: { .column .center width="33%"}
 {{< fa book size=2x >}}
-<br>
-Resources
+<br><br>
+**Documenting a function**
 :::
 
 ::::

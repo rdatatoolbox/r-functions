@@ -1,0 +1,590 @@
+## What's a function?
+
+. . .
+
+> A function is a **block of code** organized together to perform a specific task and only runs when it is called. It can have **parameters** and can **return** a result.
+
+<br/>
+
+. . .
+
+{{< fa circle-right >}} &nbsp;**Automate** common and repetitive tasks
+
+. . .
+
+{{< fa circle-right >}} &nbsp;Increase **reproducibility** and **readability** of the code
+
+. . .
+
+<br/><br/>
+
+
+**Advantages**[^r4ds]
+
+- You can give a function an **evocative name** that makes your code easier to understand.
+- As requirements change, you only need to **update code in one place**, instead of many.
+- You **eliminate** the chance of making **incidental mistakes** when you copy and paste.
+- It makes it **easier to reuse** work from project-to-project, increasing your productivity over time.
+
+[^r4ds]: R for Data Science (2^e^ ed.) <https://r4ds.hadley.nz/functions.html>
+
+
+## When to write a function? 
+
+<br /><br />
+
+::: {.center}
+::: {.boxed}
+**Same code reused twice**
+<br/>
+(do not repeat yourself)
+:::
+
+
+_and/or_
+
+
+::: {.boxed}
+**Reduce code complexity**
+<br/>
+(workflow modularity)
+:::
+
+
+_and/or_
+
+
+::: {.boxed}
+**Improve code organisation**
+<br/>
+(workflow readability)
+:::
+
+:::
+
+
+
+## Writing a function
+
+:::: {.columns}
+
+::: {.column width=45%}
+```{r}
+#| echo: true
+#| eval: false
+
+## Function definition ----
+
+function_name <- function(input) {
+  
+  # Body 
+  # of the function
+  
+  return(output)
+}
+```
+:::
+
+::: {.column width=10%}
+:::
+
+::: {.column width=45%}
+- A function is defined by calling **`function()`**
+- A function can have a (evocative) **name**[^anonym]
+- A function can have 0, 1 or many **arguments** (inputs)
+- A function can **return** a value (output) 
+:::
+
+::::
+
+
+[^anonym]: In {{< fa brands r-project >}}&nbsp; there is also **anonymous functions** (also known as **lambda functions**):<br />`function(x) sum(x) / length(x)`<br />or in short: `\(x) sum(x) / length(x)`
+
+. . .
+
+
+<br/><br/>
+
+{{< fa circle-arrow-right >}}&nbsp; A **two-step** process
+
+<br/>
+
+:::: {.columns}
+
+::: {.column width=45%}
+**1. Definition** of the function
+
+```{r}
+#| echo: true
+#| eval: false
+
+## Function definition ----
+
+arithmetic_mean <- function(x) {
+  
+  y <- sum(x) / length(x)
+  
+  return(y)
+}
+```
+:::
+
+::: {.column width=10%}
+:::
+
+::: {.column width=45%}
+**2. Call** of the function
+
+```{r}
+#| echo: true
+#| eval: false
+
+## Function call ----
+
+arithmetic_mean(x = c(4, 6, 5, 10))
+```
+:::
+
+::::
+
+
+
+## Exiting a function
+
+{{< fa circle-arrow-right >}}&nbsp; Functions exit in two ways
+
+<br /><br />
+
+:::: {.columns}
+
+::: {.column width=45%}
+::: {.center}
+[{{< fa check size=2xl >}}]{.green}
+
+<br />
+
+**Success**
+
+
+i.e. return a value w/ **`return()`**
+:::
+:::
+
+::: {.column width=10%}
+:::
+
+::: {.column width=45%}
+::: {.center}
+[{{< fa xmark size=2xl >}}]{.red}
+
+<br />
+
+**Failure**
+
+
+i.e. throw an error w/ **`stop()`**
+:::
+:::
+
+::::
+
+
+## Function return
+
+{{< fa circle-arrow-right >}}&nbsp; A function only **returns one single object**
+
+<br />
+
+:::: {.columns}
+
+::: {.column .center width=45%}
+
+```{r}
+#| echo: true
+#| eval: false
+
+arithmetic_mean <- function(x) {
+  
+  y <- sum(x) / length(x)
+  
+  return(y)
+}
+```
+:::
+
+::: {.column .center width=10%}
+:::
+
+::: {.column .center width=45%}
+:::
+
+::::
+
+
+. . .
+
+<br />
+
+{{< fa circle-arrow-right >}}&nbsp; Use **`list()`** if you want to return more that one object
+
+<br />
+
+:::: {.columns}
+
+::: {.column .center width=45%}
+
+```{r}
+#| echo: true
+#| eval: false
+
+function_name <- function(x) {
+  
+  # ...
+
+  result <- list(
+    object_1,
+    object_2,
+    ...
+  )
+  
+  return(result)
+}
+```
+:::
+
+::: {.column .center width=10%}
+:::
+
+::: {.column .center width=45%}
+:::
+
+::::
+
+
+
+
+## Function return
+
+{{< fa circle-arrow-right >}}&nbsp; In most cases, you can **omit** the keyword **`return()`**: this is called an **implicit return**
+
+. . .
+
+<br />
+
+:::: {.columns}
+
+::: {.column .center width=33%}
+[**Explicit return**]{.small}
+
+```{r}
+#| echo: true
+#| eval: false
+
+arithmetic_mean <- function(x) {
+  
+  y <- sum(x) / length(x)
+  
+  return(y)
+}
+```
+:::
+
+::: {.column .center width=33%}
+[**Implicit return**]{.small}
+
+```{r}
+#| echo: true
+#| eval: false
+
+arithmetic_mean <- function(x) {
+  
+  y <- sum(x) / length(x)
+  
+  y
+}
+```
+:::
+
+::: {.column .center width=33%}
+:::
+
+::::
+
+
+## Function return
+
+{{< fa circle-arrow-right >}}&nbsp; In most cases, you can **omit** the keyword **`return()`**: this is called an **implicit return**
+
+
+<br />
+
+:::: {.columns}
+
+::: {.column .center width=33%}
+[**Explicit return**]{.small}
+
+```{r}
+#| echo: true
+#| eval: false
+
+arithmetic_mean <- function(x) {
+  
+  y <- sum(x) / length(x)
+  
+  return(y)
+}
+```
+:::
+
+::: {.column .center width=33%}
+[**Implicit return**]{.small}
+
+```{r}
+#| echo: true
+#| eval: false
+
+arithmetic_mean <- function(x) {
+  
+  y <- sum(x) / length(x)
+  
+  y
+}
+```
+:::
+
+::: {.column .center width=33%}
+[**Implicit return & simplification**]{.small}
+
+```{r}
+#| echo: true
+#| eval: false
+
+arithmetic_mean <- function(x) {
+  
+  sum(x) / length(x)
+}
+```
+:::
+
+::::
+
+
+
+## Function return
+
+{{< fa circle-arrow-right >}}&nbsp; But sometimes, you need an **explicit return**
+
+. . .
+
+<br />
+
+:::: {.columns}
+
+::: {.column .center width=45%}
+[**Explicit returns**]{.small}
+
+```{r}
+#| echo: true
+#| eval: false
+
+arithmetic_mean <- function(x) {
+  
+  if (any(is.na(x))) {
+
+    return(0)
+  }
+
+  y <- sum(x) / length(x)
+  
+  return(y)
+}
+```
+:::
+
+::: {.column .center width=10%}
+:::
+
+::: {.column .center width=45%}
+[**WRONG behaviour**]{.small}
+
+```{r}
+#| echo: true
+#| eval: false
+
+arithmetic_mean <- function(x) {
+  
+  if (any(is.na(x))) {
+
+    0
+  }
+
+  sum(x) / length(x)
+}
+```
+:::
+
+::::
+
+. . .
+
+<br />
+
+:::: {.columns}
+
+::: {.column .center width=45%}
+:::
+
+::: {.column .center width=10%}
+:::
+
+::: {.column .center width=45%}
+[**Explicit and implicit returns**]{.small}
+
+```{r}
+#| echo: true
+#| eval: false
+
+arithmetic_mean <- function(x) {
+  
+  if (any(is.na(x))) {
+
+    return(0)
+  }
+
+  sum(x) / length(x)
+}
+```
+:::
+
+::::
+
+
+## No return
+
+{{< fa circle-arrow-right >}}&nbsp; Not all functions necessarily return an object
+
+<br />
+
+For instance,
+
+- a function that downloads / saves a file on the disk
+- a function that creates a plot (w/ `graphics`)
+- a function that modifies a global option
+- ...
+
+. . .
+
+<br /><br />
+
+:::: {.columns}
+
+::: {.column width=45%}
+
+{{< fa circle-arrow-right >}}&nbsp; In that case, the function will return **`NULL`**
+
+:::
+
+::: {.column width=10%}
+:::
+
+::: {.column width=45%}
+```{r}
+#| echo: true
+#| eval: false
+
+# Define the function ----
+save_as_csv <- function(data) {
+
+  write.csv(data, "filename.csv", row.names = FALSE)
+}
+
+# Create fake dataset ----
+tab <- data.frame(x = 1:10, y = letters[1:10])
+
+# Call the function ----
+result <- save_as_csv(data = tab)
+
+result
+## NULL
+```
+:::
+
+::::
+
+
+
+## Invisible return
+
+{{< fa circle-arrow-right >}}&nbsp; Sometimes, you might want to make the function's **return invisible** if it is **not assigned** to a variable with the function **`invisible()`**
+
+<br />
+
+This behaviour is _usually_ used: 
+
+- when the function returns **`NULL`**
+- when the return is not the main purpose of the function
+
+. . .
+
+<br /><br />
+
+
+:::: {.columns}
+
+::: {.column width=45%}
+
+{{< fa circle-arrow-right >}}&nbsp; If you don't assigne the output of the function, it will no longer be accessible afterwards
+
+<br />
+
+{{< fa circle-arrow-right >}}&nbsp; If you implement an invisible return, you have to **store the output** of the function in a **variable** and **print this variable**
+
+:::
+
+::: {.column width=10%}
+:::
+
+::: {.column width=45%}
+```{r}
+#| echo: true
+#| eval: false
+
+# Define the function ----
+save_as_csv <- function(data) {
+
+  file_name <- here::here("outputs", "filename.csv")
+  write.csv(data, file_name, row.names = FALSE)
+
+  invisible(file_name)
+}
+
+# Call the function (no assignation, no return) ----
+save_as_csv(data = tab)
+
+# Call the function (w/ assignation) ----
+path <- save_as_csv(data = tab)
+
+path
+## [1] '/home/user/documents/project_a/outputs/filename.csv'
+```
+:::
+
+::::
+
+
+
+
+## To do
+
+- Arguments
+- Argument with default value
+- Argument order
+- ... (dot-dot-dot)
+- No argument
+- Environments
+- Error handling
+- Assertive programming
+- Calling external packages (`::`)
+- Case study: from script to function
+- Documenting a function
+- Quiz

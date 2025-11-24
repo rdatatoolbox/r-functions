@@ -11,11 +11,11 @@
 ::: {.column .information width="68%"}
 
 ::: {.title}
-Quarto template
+Code refactoring
 :::
 
 ::: {.subtitle}
-HTML presentation w/ RevealJS framework
+Writing and documenting {{< fa brands r-project >}}&nbsp; functions
 :::
 
 ::: {.date}

@@ -572,19 +572,1310 @@ path
 ::::
 
 
+## Arguments
+
+:::: {.columns}
+
+::: {.column width=45%}
+
+{{< fa circle-arrow-right >}}&nbsp; A function can have **no argument**
+<br />
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Define the function ----
+read_data <- function() {
+
+  file_name <- file.path("data", "filename.csv")
+
+  read.csv(file_name)
+}
+
+# Call the function ----
+tab <- read_data()
+```
+:::
+
+::: {.column width=10%}
+:::
+
+::: {.column width=45%}
+:::
+
+::::
 
 
-## To do
+## Arguments
 
-- Arguments
-- Argument with default value
-- Argument order
-- ... (dot-dot-dot)
-- No argument
-- Environments
-- Error handling
-- Assertive programming
-- Calling external packages (`::`)
-- Case study: from script to function
-- Documenting a function
-- Quiz
+:::: {.columns}
+
+::: {.column width=45%}
+
+{{< fa circle-arrow-right >}}&nbsp; A function can have **no argument**
+<br />
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Define the function ----
+read_data <- function() {
+
+  file_name <- file.path("data", "filename.csv")
+
+  read.csv(file_name)
+}
+
+# Call the function ----
+tab <- read_data()
+```
+:::
+
+::: {.column width=10%}
+:::
+
+::: {.column width=45%}
+{{< fa circle-arrow-right >}}&nbsp; A function can have **one argument**
+<br />
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Define the function ----
+read_data <- function(filename) {
+
+  file_name <- file.path("data", filename)
+
+  read.csv(file_name)
+}
+
+# Call the function ----
+tab <- read_data(filename = "filename.csv")
+```
+:::
+
+::::
+
+## Arguments
+
+:::: {.columns}
+
+::: {.column width=45%}
+
+{{< fa circle-arrow-right >}}&nbsp; A function can have **no argument**
+<br />
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Define the function ----
+read_data <- function() {
+
+  file_name <- file.path("data", "filename.csv")
+
+  read.csv(file_name)
+}
+
+# Call the function ----
+tab <- read_data()
+```
+:::
+
+::: {.column width=10%}
+:::
+
+::: {.column width=45%}
+{{< fa circle-arrow-right >}}&nbsp; A function can have **one argument**
+<br />
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Define the function ----
+read_data <- function(filename) {
+
+  file_name <- file.path("data", filename)
+
+  read.csv(file_name)
+}
+
+# Call the function ----
+tab <- read_data(filename = "filename.csv")
+```
+:::
+
+::::
+
+<br />
+
+
+:::: {.columns}
+
+::: {.column width=45%}
+
+{{< fa circle-arrow-right >}}&nbsp; A function can have **many arguments**
+<br />
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Define the function ----
+read_data <- function(filename, path) {
+
+  file_name <- file.path(path, filename)
+
+  read.csv(file_name)
+}
+
+# Call the function ----
+tab <- read_data(filename = "filename.csv", path = "data")
+```
+:::
+
+::: {.column width=10%}
+:::
+
+::: {.column width=45%}
+:::
+
+::::
+
+
+## Arguments
+
+
+:::: {.columns}
+
+::: {.column width=45%}
+
+{{< fa circle-arrow-right >}}&nbsp; A function can have **no argument**
+<br />
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Define the function ----
+read_data <- function() {
+
+  file_name <- file.path("data", "filename.csv")
+
+  read.csv(file_name)
+}
+
+# Call the function ----
+tab <- read_data()
+```
+:::
+
+::: {.column width=10%}
+:::
+
+::: {.column width=45%}
+{{< fa circle-arrow-right >}}&nbsp; A function can have **one argument**
+<br />
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Define the function ----
+read_data <- function(filename) {
+
+  file_name <- file.path("data", filename)
+
+  read.csv(file_name)
+}
+
+# Call the function ----
+tab <- read_data(filename = "filename.csv")
+```
+:::
+
+::::
+
+<br />
+
+
+:::: {.columns}
+
+::: {.column width=45%}
+
+{{< fa circle-arrow-right >}}&nbsp; A function can have **many arguments**
+<br />
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Define the function ----
+read_data <- function(filename, path) {
+
+  file_name <- file.path(path, filename)
+
+  read.csv(file_name)
+}
+
+# Call the function ----
+tab <- read_data(filename = "filename.csv", path = "data")
+```
+:::
+
+::: {.column width=10%}
+:::
+
+::: {.column width=45%}
+{{< fa circle-arrow-right >}}&nbsp; Arguments can have **default value**
+<br />
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Define the function ----
+read_data <- function(filename, path = "data") {
+
+  file_name <- file.path(path, filename)
+
+  read.csv(file_name)
+}
+
+# Call the function ----
+tab <- read_data(filename = "filename.csv")
+tab <- read_data(filename = "filename.csv", path = "output")
+```
+:::
+
+::::
+
+
+## Arguments[^dotdotdot]
+
+
+:::: {.columns}
+
+::: {.column width=45%}
+
+{{< fa circle-arrow-right >}}&nbsp; A function can have **no argument**
+<br />
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Define the function ----
+read_data <- function() {
+
+  file_name <- file.path("data", "filename.csv")
+
+  read.csv(file_name)
+}
+
+# Call the function ----
+tab <- read_data()
+```
+:::
+
+::: {.column width=10%}
+:::
+
+::: {.column width=45%}
+{{< fa circle-arrow-right >}}&nbsp; A function can have **one argument**
+<br />
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Define the function ----
+read_data <- function(filename) {
+
+  file_name <- file.path("data", filename)
+
+  read.csv(file_name)
+}
+
+# Call the function ----
+tab <- read_data(filename = "filename.csv")
+```
+:::
+
+::::
+
+<br />
+
+
+:::: {.columns}
+
+::: {.column width=45%}
+
+{{< fa circle-arrow-right >}}&nbsp; A function can have **many arguments**
+<br />
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Define the function ----
+read_data <- function(filename, path) {
+
+  file_name <- file.path(path, filename)
+
+  read.csv(file_name)
+}
+
+# Call the function ----
+tab <- read_data(filename = "filename.csv", path = "data")
+```
+:::
+
+::: {.column width=10%}
+:::
+
+::: {.column width=45%}
+{{< fa circle-arrow-right >}}&nbsp; Arguments can have **default value**
+<br />
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Define the function ----
+read_data <- function(filename, path = "data") {
+
+  file_name <- file.path(path, filename)
+
+  read.csv(file_name)
+}
+
+# Call the function ----
+tab <- read_data(filename = "filename.csv")
+tab <- read_data(filename = "filename.csv", path = "output")
+```
+:::
+
+::::
+
+
+[^dotdotdot]: Functions can have a special argument `...` (pronounced `dot-dot-dot`). More information [here](https://adv-r.hadley.nz/functions.html#fun-dot-dot-dot).
+
+## Arguments
+
+:::: {.columns}
+
+::: {.column width=45%}
+
+{{< fa circle-arrow-right >}}&nbsp; **Argument order** matters
+
+:::
+
+::: {.column width=10%}
+:::
+
+::: {.column width=45%}
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Define the function ----
+read_data <- function(filename, path) {
+
+  file_name <- file.path(path, filename)
+
+  read.csv(file_name)
+}
+
+# Call the function ----
+tab <- read_data("filename.csv", "data")
+tab <- read_data(path = "data", filename = "filename.csv")
+```
+:::
+
+::::
+
+
+. . . 
+
+<br />
+
+
+:::: {.columns}
+
+::: {.column width=45%}
+
+{{< fa lightbulb >}}&nbsp; Create **pipeable functions**
+
+:::
+
+::: {.column width=10%}
+:::
+
+::: {.column width=45%}
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Define the function ----
+subset_data <- function(data, column) {
+
+  data[, column, drop = FALSE]
+}
+
+data(iris)
+
+# Call the function ----
+subset_data(data = iris, column = "Petal.Length")
+
+# Call the function (pipe version) ----
+iris |> 
+  subset_data(column = "Petal.Length")
+
+# Call the function (pipe version) ----
+iris %>%
+  subset_data(column = "Petal.Length")
+```
+:::
+
+::::
+
+
+## Environments
+
+
+## Calling external packages (`::`)
+
+
+
+## Case study: From script to function
+
+:::: {.columns}
+
+::: {.column width=47%}
+
+{{< fa circle-arrow-right >}}&nbsp; Let's download the [**spatial boundary**](https://gadm.org) of France
+
+```{r}
+#| echo: true
+#| eval: false
+
+## %
+
+##
+## DISTANT FILE
+##
+
+# Base URL ----
+base_url <- "https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/"
+
+# File name ----
+file_name <- "gadm41_FRA.gpkg"
+
+# Full URL ----
+(full_url <- paste0(base_url, file_name))
+# https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/gadm41_FRA.gpkg
+
+##
+## LOCAL FILE
+##
+
+# Destination folder ----
+(dest_dir <- here::here("data"))
+# /home/nicolas/projects/demo/data
+
+# Destination file ----
+(full_path <- file.path(dest_dir, file_name))
+# /home/nicolas/projects/demo/data/gadm41_FRA.gpkg
+
+##
+## DOWNLOAD FILE
+##
+
+download.file(url = full_url, destfile = full_path, mode = "wb")
+## %
+```
+
+:::
+
+::: {.column width=6%}
+:::
+
+
+::: {.column width=47%}
+:::
+
+::::
+
+
+## Case study: From script to function
+
+:::: {.columns}
+
+::: {.column width=47%}
+
+{{< fa circle-arrow-right >}}&nbsp; Let's download the [**spatial boundary**](https://gadm.org) of France
+
+```{r}
+#| echo: true
+#| eval: false
+
+## %
+
+##
+## DISTANT FILE
+##
+
+# Base URL ----
+base_url <- "https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/"
+
+# File name ----
+file_name <- "gadm41_FRA.gpkg"
+
+# Full URL ----
+(full_url <- paste0(base_url, file_name))
+# https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/gadm41_FRA.gpkg
+
+##
+## LOCAL FILE
+##
+
+# Destination folder ----
+(dest_dir <- here::here("data"))
+# /home/nicolas/projects/demo/data
+
+# Destination file ----
+(full_path <- file.path(dest_dir, file_name))
+# /home/nicolas/projects/demo/data/gadm41_FRA.gpkg
+
+##
+## DOWNLOAD FILE
+##
+
+download.file(url = full_url, destfile = full_path, mode = "wb")
+## %
+```
+
+:::
+
+::: {.column width=6%}
+:::
+
+
+::: {.column width=47%}
+
+
+{{< fa circle-arrow-right >}}&nbsp; **Convert into function** - `v0.1`
+
+```{r}
+#| echo: true
+#| eval: false
+
+download_gadm <- function() {
+    
+  ##
+  ## DISTANT FILE
+  ##
+
+  # Base URL ----
+  base_url <- "https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/"
+
+  # File name ----
+  file_name <- "gadm41_FRA.gpkg"
+
+  # Full URL ----
+  (full_url <- paste0(base_url, file_name))
+  # https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/gadm41_FRA.gpkg
+
+  ##
+  ## LOCAL FILE
+  ##
+
+  # Destination folder ----
+  (dest_dir <- here::here("data"))
+  # /home/nicolas/projects/demo/data
+
+  # Destination file ----
+  (full_path <- file.path(dest_dir, file_name))
+  # /home/nicolas/projects/demo/data/gadm41_FRA.gpkg
+
+  ##
+  ## DOWNLOAD FILE
+  ##
+
+  download.file(url = full_url, destfile = full_path, mode = "wb")
+}
+```
+:::
+
+::::
+
+## Case study: From script to function
+
+:::: {.columns}
+
+::: {.column width=47%}
+
+{{< fa circle-arrow-right >}}&nbsp; Let's download the [**spatial boundary**](https://gadm.org) of France
+
+```{r}
+#| echo: true
+#| eval: false
+
+## %
+
+##
+## DISTANT FILE
+##
+
+# Base URL ----
+base_url <- "https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/"
+
+# File name ----
+file_name <- "gadm41_FRA.gpkg"
+
+# Full URL ----
+(full_url <- paste0(base_url, file_name))
+# https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/gadm41_FRA.gpkg
+
+##
+## LOCAL FILE
+##
+
+# Destination folder ----
+(dest_dir <- here::here("data"))
+# /home/nicolas/projects/demo/data
+
+# Destination file ----
+(full_path <- file.path(dest_dir, file_name))
+# /home/nicolas/projects/demo/data/gadm41_FRA.gpkg
+
+##
+## DOWNLOAD FILE
+##
+
+download.file(url = full_url, destfile = full_path, mode = "wb")
+## %
+```
+
+:::
+
+::: {.column width=6%}
+:::
+
+
+::: {.column width=47%}
+
+
+{{< fa circle-arrow-right >}}&nbsp; **Clean comments** - `v0.2`
+
+```{r}
+#| echo: true
+#| eval: false
+
+download_gadm <- function() {
+    
+  # Base URL ----
+  base_url <- "https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/"
+
+  # File name ----
+  file_name <- "gadm41_FRA.gpkg"
+
+  # Full URL ----
+  full_url <- paste0(base_url, file_name)
+
+  # Destination folder ----
+  dest_dir <- here::here("data")
+
+  # Destination file ----
+  full_path <- file.path(dest_dir, file_name)
+
+  # Download file ----
+  download.file(url = full_url, destfile = full_path, mode = "wb")
+}
+```
+:::
+
+::::
+
+
+
+## Case study: From script to function
+
+:::: {.columns}
+
+::: {.column width=47%}
+
+{{< fa circle-arrow-right >}}&nbsp; Let's download the [**spatial boundary**](https://gadm.org) of France
+
+```{r}
+#| echo: true
+#| eval: false
+
+## %
+
+##
+## DISTANT FILE
+##
+
+# Base URL ----
+base_url <- "https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/"
+
+# File name ----
+file_name <- "gadm41_FRA.gpkg"
+
+# Full URL ----
+(full_url <- paste0(base_url, file_name))
+# https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/gadm41_FRA.gpkg
+
+##
+## LOCAL FILE
+##
+
+# Destination folder ----
+(dest_dir <- here::here("data"))
+# /home/nicolas/projects/demo/data
+
+# Destination file ----
+(full_path <- file.path(dest_dir, file_name))
+# /home/nicolas/projects/demo/data/gadm41_FRA.gpkg
+
+##
+## DOWNLOAD FILE
+##
+
+download.file(url = full_url, destfile = full_path, mode = "wb")
+## %
+```
+
+:::
+
+::: {.column width=6%}
+:::
+
+
+::: {.column width=47%}
+
+
+{{< fa circle-arrow-right >}}&nbsp; **Function return** - `v0.3`
+
+```{r}
+#| echo: true
+#| eval: false
+
+download_gadm <- function() {
+    
+  # Base URL ----
+  base_url <- "https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/"
+
+  # File name ----
+  file_name <- "gadm41_FRA.gpkg"
+
+  # Full URL ----
+  full_url <- paste0(base_url, file_name)
+
+  # Destination folder ----
+  dest_dir <- here::here("data")
+
+  # Destination file ----
+  full_path <- file.path(dest_dir, file_name)
+
+  # Download file ----
+  download.file(url = full_url, destfile = full_path, mode = "wb")
+
+  full_path
+}
+```
+:::
+
+::::
+
+
+
+
+## Case study: From script to function
+
+:::: {.columns}
+
+::: {.column width=47%}
+
+{{< fa circle-arrow-right >}}&nbsp; Let's download the [**spatial boundary**](https://gadm.org) of France
+
+```{r}
+#| echo: true
+#| eval: false
+
+## %
+
+##
+## DISTANT FILE
+##
+
+# Base URL ----
+base_url <- "https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/"
+
+# File name ----
+file_name <- "gadm41_FRA.gpkg"
+
+# Full URL ----
+(full_url <- paste0(base_url, file_name))
+# https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/gadm41_FRA.gpkg
+
+##
+## LOCAL FILE
+##
+
+# Destination folder ----
+(dest_dir <- here::here("data"))
+# /home/nicolas/projects/demo/data
+
+# Destination file ----
+(full_path <- file.path(dest_dir, file_name))
+# /home/nicolas/projects/demo/data/gadm41_FRA.gpkg
+
+##
+## DOWNLOAD FILE
+##
+
+download.file(url = full_url, destfile = full_path, mode = "wb")
+## %
+```
+
+:::
+
+::: {.column width=6%}
+:::
+
+
+::: {.column width=47%}
+
+
+{{< fa circle-arrow-right >}}&nbsp; **Invisible return** - `v0.4`
+
+```{r}
+#| echo: true
+#| eval: false
+
+download_gadm <- function() {
+    
+  # Base URL ----
+  base_url <- "https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/"
+
+  # File name ----
+  file_name <- "gadm41_FRA.gpkg"
+
+  # Full URL ----
+  full_url <- paste0(base_url, file_name)
+
+  # Destination folder ----
+  dest_dir <- here::here("data")
+
+  # Destination file ----
+  full_path <- file.path(dest_dir, file_name)
+
+  # Download file ----
+  download.file(url = full_url, destfile = full_path, mode = "wb")
+
+  invisible(full_path)
+}
+```
+:::
+
+::::
+
+
+
+## Case study: From script to function
+
+:::: {.columns}
+
+::: {.column width=47%}
+
+{{< fa circle-arrow-right >}}&nbsp; Let's download the [**spatial boundary**](https://gadm.org) of France
+
+```{r}
+#| echo: true
+#| eval: false
+
+## %
+
+##
+## DISTANT FILE
+##
+
+# Base URL ----
+base_url <- "https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/"
+
+# File name ----
+file_name <- "gadm41_FRA.gpkg"
+
+# Full URL ----
+(full_url <- paste0(base_url, file_name))
+# https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/gadm41_FRA.gpkg
+
+##
+## LOCAL FILE
+##
+
+# Destination folder ----
+(dest_dir <- here::here("data"))
+# /home/nicolas/projects/demo/data
+
+# Destination file ----
+(full_path <- file.path(dest_dir, file_name))
+# /home/nicolas/projects/demo/data/gadm41_FRA.gpkg
+
+##
+## DOWNLOAD FILE
+##
+
+download.file(url = full_url, destfile = full_path, mode = "wb")
+## %
+```
+
+:::
+
+::: {.column width=6%}
+:::
+
+
+::: {.column width=47%}
+
+
+{{< fa circle-arrow-right >}}&nbsp; **Add 'file_name' argument** - `v0.5`
+
+```{r}
+#| echo: true
+#| eval: false
+
+download_gadm <- function(file_name = "gadm41_FRA.gpkg") {
+    
+  # Base URL ----
+  base_url <- "https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/"
+
+  # File name ----
+  # 
+
+  # Full URL ----
+  full_url <- paste0(base_url, file_name)
+
+  # Destination folder ----
+  dest_dir <- here::here("data")
+
+  # Destination file ----
+  full_path <- file.path(dest_dir, file_name)
+
+  # Download file ----
+  download.file(url = full_url, destfile = full_path, mode = "wb")
+
+  invisible(full_path)
+}
+```
+:::
+
+::::
+
+## Case study: From script to function
+
+:::: {.columns}
+
+::: {.column width=47%}
+
+{{< fa circle-arrow-right >}}&nbsp; Let's download the [**spatial boundary**](https://gadm.org) of France
+
+```{r}
+#| echo: true
+#| eval: false
+
+## %
+
+##
+## DISTANT FILE
+##
+
+# Base URL ----
+base_url <- "https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/"
+
+# File name ----
+file_name <- "gadm41_FRA.gpkg"
+
+# Full URL ----
+(full_url <- paste0(base_url, file_name))
+# https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/gadm41_FRA.gpkg
+
+##
+## LOCAL FILE
+##
+
+# Destination folder ----
+(dest_dir <- here::here("data"))
+# /home/nicolas/projects/demo/data
+
+# Destination file ----
+(full_path <- file.path(dest_dir, file_name))
+# /home/nicolas/projects/demo/data/gadm41_FRA.gpkg
+
+##
+## DOWNLOAD FILE
+##
+
+download.file(url = full_url, destfile = full_path, mode = "wb")
+## %
+```
+
+:::
+
+::: {.column width=6%}
+:::
+
+
+::: {.column width=47%}
+
+
+{{< fa circle-arrow-right >}}&nbsp; **Rename 'file_name' argument** - `v0.6`
+
+```{r}
+#| echo: true
+#| eval: false
+
+download_gadm <- function(country = "FRA") {
+    
+  # Base URL ----
+  base_url <- "https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/"
+
+  # File name ----
+  file_name <- paste0("gadm41_", country, ".gpkg")
+
+  # Full URL ----
+  full_url <- paste0(base_url, file_name)
+
+  # Destination folder ----
+  dest_dir <- here::here("data")
+
+  # Destination file ----
+  full_path <- file.path(dest_dir, file_name)
+
+  # Download file ----
+  download.file(url = full_url, destfile = full_path, mode = "wb")
+
+  invisible(full_path)
+}
+```
+:::
+
+::::
+
+
+## Case study: From script to function
+
+:::: {.columns}
+
+::: {.column width=47%}
+
+{{< fa circle-arrow-right >}}&nbsp; Let's download the [**spatial boundary**](https://gadm.org) of France
+
+```{r}
+#| echo: true
+#| eval: false
+
+## %
+
+##
+## DISTANT FILE
+##
+
+# Base URL ----
+base_url <- "https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/"
+
+# File name ----
+file_name <- "gadm41_FRA.gpkg"
+
+# Full URL ----
+(full_url <- paste0(base_url, file_name))
+# https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/gadm41_FRA.gpkg
+
+##
+## LOCAL FILE
+##
+
+# Destination folder ----
+(dest_dir <- here::here("data"))
+# /home/nicolas/projects/demo/data
+
+# Destination file ----
+(full_path <- file.path(dest_dir, file_name))
+# /home/nicolas/projects/demo/data/gadm41_FRA.gpkg
+
+##
+## DOWNLOAD FILE
+##
+
+download.file(url = full_url, destfile = full_path, mode = "wb")
+## %
+```
+
+:::
+
+::: {.column width=6%}
+:::
+
+
+::: {.column width=47%}
+
+
+{{< fa circle-arrow-right >}}&nbsp; **Add 'dest_dir' argument** - `v0.7`
+
+```{r}
+#| echo: true
+#| eval: false
+
+download_gadm <- function(
+  country = "FRA", 
+  dest_dir = here::here("data")
+) {
+    
+  # Base URL ----
+  base_url <- "https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/"
+
+  # File name ----
+  file_name <- paste0("gadm41_", country, ".gpkg")
+
+  # Full URL ----
+  full_url <- paste0(base_url, file_name)
+
+  # Destination file ----
+  full_path <- file.path(dest_dir, file_name)
+
+  # Download file ----
+  download.file(url = full_url, destfile = full_path, mode = "wb")
+
+  invisible(full_path)
+}
+```
+:::
+
+::::
+
+
+## Case study: From script to function
+
+:::: {.columns}
+
+::: {.column width=47%}
+
+{{< fa circle-arrow-right >}}&nbsp; Let's download the [**spatial boundary**](https://gadm.org) of France
+
+```{r}
+#| echo: true
+#| eval: false
+
+## %
+
+##
+## DISTANT FILE
+##
+
+# Base URL ----
+base_url <- "https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/"
+
+# File name ----
+file_name <- "gadm41_FRA.gpkg"
+
+# Full URL ----
+(full_url <- paste0(base_url, file_name))
+# https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/gadm41_FRA.gpkg
+
+##
+## LOCAL FILE
+##
+
+# Destination folder ----
+(dest_dir <- here::here("data"))
+# /home/nicolas/projects/demo/data
+
+# Destination file ----
+(full_path <- file.path(dest_dir, file_name))
+# /home/nicolas/projects/demo/data/gadm41_FRA.gpkg
+
+##
+## DOWNLOAD FILE
+##
+
+download.file(url = full_url, destfile = full_path, mode = "wb")
+## %
+```
+
+:::
+
+::: {.column width=6%}
+:::
+
+
+::: {.column width=47%}
+
+
+{{< fa circle-arrow-right >}}&nbsp; **Add 'dest_dir' argument** - `v0.7`
+
+```{r}
+#| echo: true
+#| eval: false
+
+download_gadm <- function(
+  country = "FRA", 
+  dest_dir = here::here("data")
+) {
+    
+  # Base URL ----
+  base_url <- "https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/"
+
+  # File name ----
+  file_name <- paste0("gadm41_", country, ".gpkg")
+
+  # Full URL ----
+  full_url <- paste0(base_url, file_name)
+
+  # Destination file ----
+  full_path <- file.path(dest_dir, file_name)
+
+  # Download file ----
+  download.file(url = full_url, destfile = full_path, mode = "wb")
+
+  invisible(full_path)
+}
+```
+
+<br />
+
+
+
+::: {.small}
+{{< fa lightbulb >}}&nbsp; To go further:
+
+- Assertive programming (i.e. check arguments)
+- Create destination directory (or throw an error)
+- Check if file has been already downloaded
+- Check for valid URL, ...
+:::
+
+:::
+
+::::
+
+## Documenting a function
+
+...
+
+
+## Resources
+
+- <https://adv-r.hadley.nz/functions.html>
+- <https://r4ds.hadley.nz/functions.html>
+
+
+

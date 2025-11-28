@@ -1049,12 +1049,114 @@ iris %>%
 
 ## Environments
 
+:::: {.columns}
 
-## Calling external packages (`::`)
+::: {.column width=45%}
+
+{{< fa circle-arrow-right >}}&nbsp; Object created inside a function (**`local environment`**) **is not accessible** from the **`global environment`**
+
+:::
+
+::: {.column width=10%}
+:::
+
+::: {.column width=45%}
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Define the function ----
+arithmetic_mean <- function(x) {
+  
+  y <- sum(x) / length(x)
+  y
+}
+
+y
+# Error: object 'y' not found
+```
+:::
+
+::::
+
+. . .
+
+<br />
+
+:::: {.columns}
+
+::: {.column width=45%}
+
+{{< fa circle-arrow-right >}}&nbsp; Object created inside the **`global environment`** **is accessible** from the function
+
+:::
+
+::: {.column width=10%}
+:::
+
+::: {.column width=45%}
+
+```{r}
+#| echo: true
+#| eval: false
+
+x <- 1:10
+
+# Define the function ----
+arithmetic_mean <- function() {
+  
+  sum(x) / length(x)
+}
+
+arithmetic_mean()
+# 5.5
+```
+:::
+
+::::
 
 
+. . .
 
-## Case study: From script to function
+<br />
+
+:::: {.columns}
+
+::: {.column width=45%}
+
+{{< fa triangle-exclamation >}}&nbsp; But **use arguments** instead
+
+:::
+
+::: {.column width=10%}
+:::
+
+::: {.column width=45%}
+
+```{r}
+#| echo: true
+#| eval: false
+
+vect <- 1:10
+
+# Define the function ----
+arithmetic_mean <- function(x) {
+  
+  sum(x) / length(x)
+}
+
+arithmetic_mean(x = vect)
+# 5.5
+```
+:::
+
+::::
+
+
+# Case study
+
+## From script to function
 
 :::: {.columns}
 
@@ -1114,7 +1216,7 @@ download.file(url = full_url, destfile = full_path, mode = "wb")
 ::::
 
 
-## Case study: From script to function
+## From script to function
 
 :::: {.columns}
 
@@ -1216,7 +1318,7 @@ download_gadm <- function() {
 
 ::::
 
-## Case study: From script to function
+## From script to function
 
 :::: {.columns}
 
@@ -1306,7 +1408,7 @@ download_gadm <- function() {
 
 
 
-## Case study: From script to function
+## From script to function
 
 :::: {.columns}
 
@@ -1399,7 +1501,7 @@ download_gadm <- function() {
 
 
 
-## Case study: From script to function
+## From script to function
 
 :::: {.columns}
 
@@ -1491,7 +1593,7 @@ download_gadm <- function() {
 
 
 
-## Case study: From script to function
+## From script to function
 
 :::: {.columns}
 
@@ -1581,7 +1683,7 @@ download_gadm <- function(file_name = "gadm41_FRA.gpkg") {
 
 ::::
 
-## Case study: From script to function
+## From script to function
 
 :::: {.columns}
 
@@ -1672,7 +1774,7 @@ download_gadm <- function(country = "FRA") {
 ::::
 
 
-## Case study: From script to function
+## From script to function
 
 :::: {.columns}
 
@@ -1763,7 +1865,7 @@ download_gadm <- function(
 ::::
 
 
-## Case study: From script to function
+## From script to function
 
 :::: {.columns}
 
@@ -1869,13 +1971,67 @@ download_gadm <- function(
 
 ## Documenting a function
 
-...
+:::: {.columns}
+
+::: {.column width=25%}
+![](images/roxygen2-logo.png){width=70%}
+:::
+
+::: {.column width=75%}
+- Specially-structured **comments preceding** each function definition
+- **Lightweight syntax** easy to write and to read
+- Syntax: **`#' @field value`**
+- Keep function definition and documentation in the same file
+- Automatically write `.Rd` files (in `man/`) and `NAMESPACE` w/ `devtools::document()`
+
+{{< fa circle-right >}} &nbsp;Get started w/ `roxygen2`: [**here**](https://cran.r-project.org/web/packages/roxygen2/vignettes/roxygen2.html)
+:::
+
+::::
+
+. . .
+
+
+:::: {.columns}
+::: {.column width=50%}
+
+:::
+
+::: {.column width=50%}
+```{r}
+#| echo: true
+#| eval: true
+
+#' Compute the arithmetic mean
+#'
+#' @description
+#' This function computes the arithmetic mean of a numeric variable.
+#'
+#' @param x a `numeric` vector
+#'
+#' @return A `numeric` value representing the arithmetic mean of `x`.
+#'
+#' @export
+#'
+#' @examples
+#' x <- 1:10
+#' arithmetic_mean(x)
+
+arithmetic_mean <- function(x) {
+  
+  sum(x) / length(x)
+}
+```
+:::
+
+::::
 
 
 ## Resources
 
-- <https://adv-r.hadley.nz/functions.html>
-- <https://r4ds.hadley.nz/functions.html>
+- Wickham H (2023) **Chap. 25: Functions**. In _R for Data Science_, (2^nd^ ed.). [Online book](https://r4ds.hadley.nz/functions.html)
+- Wickham H (2019) **Chap. 6: Functions**. In _Advanced R_, (2^nd^ ed.). [Online book](https://adv-r.hadley.nz/functions.html)
+- Wickham H & Bryan J (2023) **Chap. 16: Function documentation**. In _R Packages_, (2^nd^ ed.). [Online book](https://r-pkgs.org/man.html)
 
 
 

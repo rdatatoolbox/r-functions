@@ -937,142 +937,76 @@ Author name<br/>
 </section>
 <section id="environments" class="slide level2">
 <h2>Environments</h2>
-</section>
-<section id="calling-external-packages" class="slide level2">
-<h2>Calling external packages (<code>::</code>)</h2>
-</section>
-<section id="case-study-from-script-to-function" class="slide level2">
-<h2>Case study: From script to function</h2>
 <div class="columns">
-<div class="column" style="width:47%;">
-<p><i class="fa-solid fa-circle-arrow-right" aria-label="circle-arrow-right"></i>&nbsp; Let’s download the <a href="https://gadm.org"><strong>spatial boundary</strong></a> of France</p>
+<div class="column" style="width:45%;">
+<p><i class="fa-solid fa-circle-arrow-right" aria-label="circle-arrow-right"></i>&nbsp; Object created inside a function (<strong><code>local environment</code></strong>) <strong>is not accessible</strong> from the <strong><code>global environment</code></strong></p>
+</div><div class="column" style="width:10%;">
+
+</div><div class="column" style="width:45%;">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href=""></a><span class="do">## %</span></span>
-<span id="cb32-2"><a href=""></a></span>
-<span id="cb32-3"><a href=""></a><span class="do">##</span></span>
-<span id="cb32-4"><a href=""></a><span class="do">## DISTANT FILE</span></span>
-<span id="cb32-5"><a href=""></a><span class="do">##</span></span>
-<span id="cb32-6"><a href=""></a></span>
-<span id="cb32-7"><a href=""></a><span class="co"># Base URL ----</span></span>
-<span id="cb32-8"><a href=""></a>base_url <span class="ot">&lt;-</span> <span class="st">"https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/"</span></span>
-<span id="cb32-9"><a href=""></a></span>
-<span id="cb32-10"><a href=""></a><span class="co"># File name ----</span></span>
-<span id="cb32-11"><a href=""></a>file_name <span class="ot">&lt;-</span> <span class="st">"gadm41_FRA.gpkg"</span></span>
-<span id="cb32-12"><a href=""></a></span>
-<span id="cb32-13"><a href=""></a><span class="co"># Full URL ----</span></span>
-<span id="cb32-14"><a href=""></a>(full_url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(base_url, file_name))</span>
-<span id="cb32-15"><a href=""></a><span class="co"># https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/gadm41_FRA.gpkg</span></span>
-<span id="cb32-16"><a href=""></a></span>
-<span id="cb32-17"><a href=""></a><span class="do">##</span></span>
-<span id="cb32-18"><a href=""></a><span class="do">## LOCAL FILE</span></span>
-<span id="cb32-19"><a href=""></a><span class="do">##</span></span>
-<span id="cb32-20"><a href=""></a></span>
-<span id="cb32-21"><a href=""></a><span class="co"># Destination folder ----</span></span>
-<span id="cb32-22"><a href=""></a>(dest_dir <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>))</span>
-<span id="cb32-23"><a href=""></a><span class="co"># /home/nicolas/projects/demo/data</span></span>
-<span id="cb32-24"><a href=""></a></span>
-<span id="cb32-25"><a href=""></a><span class="co"># Destination file ----</span></span>
-<span id="cb32-26"><a href=""></a>(full_path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(dest_dir, file_name))</span>
-<span id="cb32-27"><a href=""></a><span class="co"># /home/nicolas/projects/demo/data/gadm41_FRA.gpkg</span></span>
-<span id="cb32-28"><a href=""></a></span>
-<span id="cb32-29"><a href=""></a><span class="do">##</span></span>
-<span id="cb32-30"><a href=""></a><span class="do">## DOWNLOAD FILE</span></span>
-<span id="cb32-31"><a href=""></a><span class="do">##</span></span>
-<span id="cb32-32"><a href=""></a></span>
-<span id="cb32-33"><a href=""></a><span class="fu">download.file</span>(<span class="at">url =</span> full_url, <span class="at">destfile =</span> full_path, <span class="at">mode =</span> <span class="st">"wb"</span>)</span>
-<span id="cb32-34"><a href=""></a><span class="do">## %</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href=""></a><span class="co"># Define the function ----</span></span>
+<span id="cb32-2"><a href=""></a>arithmetic_mean <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb32-3"><a href=""></a>  </span>
+<span id="cb32-4"><a href=""></a>  y <span class="ot">&lt;-</span> <span class="fu">sum</span>(x) <span class="sc">/</span> <span class="fu">length</span>(x)</span>
+<span id="cb32-5"><a href=""></a>  y</span>
+<span id="cb32-6"><a href=""></a>}</span>
+<span id="cb32-7"><a href=""></a></span>
+<span id="cb32-8"><a href=""></a>y</span>
+<span id="cb32-9"><a href=""></a><span class="co"># Error: object 'y' not found</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</div><div class="column" style="width:6%;">
-
-</div><div class="column" style="width:47%;">
-
 </div></div>
-</section>
-<section id="case-study-from-script-to-function-1" class="slide level2">
-<h2>Case study: From script to function</h2>
+<div class="fragment">
+<p><br></p>
 <div class="columns">
-<div class="column" style="width:47%;">
-<p><i class="fa-solid fa-circle-arrow-right" aria-label="circle-arrow-right"></i>&nbsp; Let’s download the <a href="https://gadm.org"><strong>spatial boundary</strong></a> of France</p>
+<div class="column" style="width:45%;">
+<p><i class="fa-solid fa-circle-arrow-right" aria-label="circle-arrow-right"></i>&nbsp; Object created inside the <strong><code>global environment</code></strong> <strong>is accessible</strong> from the function</p>
+</div><div class="column" style="width:10%;">
+
+</div><div class="column" style="width:45%;">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href=""></a><span class="do">## %</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href=""></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
 <span id="cb33-2"><a href=""></a></span>
-<span id="cb33-3"><a href=""></a><span class="do">##</span></span>
-<span id="cb33-4"><a href=""></a><span class="do">## DISTANT FILE</span></span>
-<span id="cb33-5"><a href=""></a><span class="do">##</span></span>
-<span id="cb33-6"><a href=""></a></span>
-<span id="cb33-7"><a href=""></a><span class="co"># Base URL ----</span></span>
-<span id="cb33-8"><a href=""></a>base_url <span class="ot">&lt;-</span> <span class="st">"https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/"</span></span>
-<span id="cb33-9"><a href=""></a></span>
-<span id="cb33-10"><a href=""></a><span class="co"># File name ----</span></span>
-<span id="cb33-11"><a href=""></a>file_name <span class="ot">&lt;-</span> <span class="st">"gadm41_FRA.gpkg"</span></span>
-<span id="cb33-12"><a href=""></a></span>
-<span id="cb33-13"><a href=""></a><span class="co"># Full URL ----</span></span>
-<span id="cb33-14"><a href=""></a>(full_url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(base_url, file_name))</span>
-<span id="cb33-15"><a href=""></a><span class="co"># https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/gadm41_FRA.gpkg</span></span>
-<span id="cb33-16"><a href=""></a></span>
-<span id="cb33-17"><a href=""></a><span class="do">##</span></span>
-<span id="cb33-18"><a href=""></a><span class="do">## LOCAL FILE</span></span>
-<span id="cb33-19"><a href=""></a><span class="do">##</span></span>
-<span id="cb33-20"><a href=""></a></span>
-<span id="cb33-21"><a href=""></a><span class="co"># Destination folder ----</span></span>
-<span id="cb33-22"><a href=""></a>(dest_dir <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>))</span>
-<span id="cb33-23"><a href=""></a><span class="co"># /home/nicolas/projects/demo/data</span></span>
-<span id="cb33-24"><a href=""></a></span>
-<span id="cb33-25"><a href=""></a><span class="co"># Destination file ----</span></span>
-<span id="cb33-26"><a href=""></a>(full_path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(dest_dir, file_name))</span>
-<span id="cb33-27"><a href=""></a><span class="co"># /home/nicolas/projects/demo/data/gadm41_FRA.gpkg</span></span>
-<span id="cb33-28"><a href=""></a></span>
-<span id="cb33-29"><a href=""></a><span class="do">##</span></span>
-<span id="cb33-30"><a href=""></a><span class="do">## DOWNLOAD FILE</span></span>
-<span id="cb33-31"><a href=""></a><span class="do">##</span></span>
-<span id="cb33-32"><a href=""></a></span>
-<span id="cb33-33"><a href=""></a><span class="fu">download.file</span>(<span class="at">url =</span> full_url, <span class="at">destfile =</span> full_path, <span class="at">mode =</span> <span class="st">"wb"</span>)</span>
-<span id="cb33-34"><a href=""></a><span class="do">## %</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div><div class="column" style="width:6%;">
-
-</div><div class="column" style="width:47%;">
-<p><i class="fa-solid fa-circle-arrow-right" aria-label="circle-arrow-right"></i>&nbsp; <strong>Convert into function</strong> - <code>v0.1</code></p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href=""></a>download_gadm <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
-<span id="cb34-2"><a href=""></a>    </span>
-<span id="cb34-3"><a href=""></a>  <span class="do">##</span></span>
-<span id="cb34-4"><a href=""></a>  <span class="do">## DISTANT FILE</span></span>
-<span id="cb34-5"><a href=""></a>  <span class="do">##</span></span>
-<span id="cb34-6"><a href=""></a></span>
-<span id="cb34-7"><a href=""></a>  <span class="co"># Base URL ----</span></span>
-<span id="cb34-8"><a href=""></a>  base_url <span class="ot">&lt;-</span> <span class="st">"https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/"</span></span>
-<span id="cb34-9"><a href=""></a></span>
-<span id="cb34-10"><a href=""></a>  <span class="co"># File name ----</span></span>
-<span id="cb34-11"><a href=""></a>  file_name <span class="ot">&lt;-</span> <span class="st">"gadm41_FRA.gpkg"</span></span>
-<span id="cb34-12"><a href=""></a></span>
-<span id="cb34-13"><a href=""></a>  <span class="co"># Full URL ----</span></span>
-<span id="cb34-14"><a href=""></a>  (full_url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(base_url, file_name))</span>
-<span id="cb34-15"><a href=""></a>  <span class="co"># https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/gadm41_FRA.gpkg</span></span>
-<span id="cb34-16"><a href=""></a></span>
-<span id="cb34-17"><a href=""></a>  <span class="do">##</span></span>
-<span id="cb34-18"><a href=""></a>  <span class="do">## LOCAL FILE</span></span>
-<span id="cb34-19"><a href=""></a>  <span class="do">##</span></span>
-<span id="cb34-20"><a href=""></a></span>
-<span id="cb34-21"><a href=""></a>  <span class="co"># Destination folder ----</span></span>
-<span id="cb34-22"><a href=""></a>  (dest_dir <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>))</span>
-<span id="cb34-23"><a href=""></a>  <span class="co"># /home/nicolas/projects/demo/data</span></span>
-<span id="cb34-24"><a href=""></a></span>
-<span id="cb34-25"><a href=""></a>  <span class="co"># Destination file ----</span></span>
-<span id="cb34-26"><a href=""></a>  (full_path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(dest_dir, file_name))</span>
-<span id="cb34-27"><a href=""></a>  <span class="co"># /home/nicolas/projects/demo/data/gadm41_FRA.gpkg</span></span>
-<span id="cb34-28"><a href=""></a></span>
-<span id="cb34-29"><a href=""></a>  <span class="do">##</span></span>
-<span id="cb34-30"><a href=""></a>  <span class="do">## DOWNLOAD FILE</span></span>
-<span id="cb34-31"><a href=""></a>  <span class="do">##</span></span>
-<span id="cb34-32"><a href=""></a></span>
-<span id="cb34-33"><a href=""></a>  <span class="fu">download.file</span>(<span class="at">url =</span> full_url, <span class="at">destfile =</span> full_path, <span class="at">mode =</span> <span class="st">"wb"</span>)</span>
-<span id="cb34-34"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb33-3"><a href=""></a><span class="co"># Define the function ----</span></span>
+<span id="cb33-4"><a href=""></a>arithmetic_mean <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb33-5"><a href=""></a>  </span>
+<span id="cb33-6"><a href=""></a>  <span class="fu">sum</span>(x) <span class="sc">/</span> <span class="fu">length</span>(x)</span>
+<span id="cb33-7"><a href=""></a>}</span>
+<span id="cb33-8"><a href=""></a></span>
+<span id="cb33-9"><a href=""></a><span class="fu">arithmetic_mean</span>()</span>
+<span id="cb33-10"><a href=""></a><span class="co"># 5.5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div></div>
+</div>
+<div class="fragment">
+<p><br></p>
+<div class="columns">
+<div class="column" style="width:45%;">
+<p><i class="fa-solid fa-triangle-exclamation" aria-label="triangle-exclamation"></i>&nbsp; But <strong>use arguments</strong> instead</p>
+</div><div class="column" style="width:10%;">
+
+</div><div class="column" style="width:45%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href=""></a>vect <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb34-2"><a href=""></a></span>
+<span id="cb34-3"><a href=""></a><span class="co"># Define the function ----</span></span>
+<span id="cb34-4"><a href=""></a>arithmetic_mean <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb34-5"><a href=""></a>  </span>
+<span id="cb34-6"><a href=""></a>  <span class="fu">sum</span>(x) <span class="sc">/</span> <span class="fu">length</span>(x)</span>
+<span id="cb34-7"><a href=""></a>}</span>
+<span id="cb34-8"><a href=""></a></span>
+<span id="cb34-9"><a href=""></a><span class="fu">arithmetic_mean</span>(<span class="at">x =</span> vect)</span>
+<span id="cb34-10"><a href=""></a><span class="co"># 5.5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div></div>
+</div>
 </section>
-<section id="case-study-from-script-to-function-2" class="slide level2">
-<h2>Case study: From script to function</h2>
+<section>
+<section id="case-study" class="title-slide slide level1 center">
+<h1>Case study</h1>
+
+</section>
+<section id="from-script-to-function" class="slide level2">
+<h2>From script to function</h2>
 <div class="columns">
 <div class="column" style="width:47%;">
 <p><i class="fa-solid fa-circle-arrow-right" aria-label="circle-arrow-right"></i>&nbsp; Let’s download the <a href="https://gadm.org"><strong>spatial boundary</strong></a> of France</p>
@@ -1115,454 +1049,584 @@ Author name<br/>
 </div><div class="column" style="width:6%;">
 
 </div><div class="column" style="width:47%;">
-<p><i class="fa-solid fa-circle-arrow-right" aria-label="circle-arrow-right"></i>&nbsp; <strong>Clean comments</strong> - <code>v0.2</code></p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href=""></a>download_gadm <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
-<span id="cb36-2"><a href=""></a>    </span>
-<span id="cb36-3"><a href=""></a>  <span class="co"># Base URL ----</span></span>
-<span id="cb36-4"><a href=""></a>  base_url <span class="ot">&lt;-</span> <span class="st">"https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/"</span></span>
-<span id="cb36-5"><a href=""></a></span>
-<span id="cb36-6"><a href=""></a>  <span class="co"># File name ----</span></span>
-<span id="cb36-7"><a href=""></a>  file_name <span class="ot">&lt;-</span> <span class="st">"gadm41_FRA.gpkg"</span></span>
-<span id="cb36-8"><a href=""></a></span>
-<span id="cb36-9"><a href=""></a>  <span class="co"># Full URL ----</span></span>
-<span id="cb36-10"><a href=""></a>  full_url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(base_url, file_name)</span>
-<span id="cb36-11"><a href=""></a></span>
-<span id="cb36-12"><a href=""></a>  <span class="co"># Destination folder ----</span></span>
-<span id="cb36-13"><a href=""></a>  dest_dir <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>)</span>
-<span id="cb36-14"><a href=""></a></span>
-<span id="cb36-15"><a href=""></a>  <span class="co"># Destination file ----</span></span>
-<span id="cb36-16"><a href=""></a>  full_path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(dest_dir, file_name)</span>
-<span id="cb36-17"><a href=""></a></span>
-<span id="cb36-18"><a href=""></a>  <span class="co"># Download file ----</span></span>
-<span id="cb36-19"><a href=""></a>  <span class="fu">download.file</span>(<span class="at">url =</span> full_url, <span class="at">destfile =</span> full_path, <span class="at">mode =</span> <span class="st">"wb"</span>)</span>
-<span id="cb36-20"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
+
 </div></div>
 </section>
-<section id="case-study-from-script-to-function-3" class="slide level2">
-<h2>Case study: From script to function</h2>
+<section id="from-script-to-function-1" class="slide level2">
+<h2>From script to function</h2>
 <div class="columns">
 <div class="column" style="width:47%;">
 <p><i class="fa-solid fa-circle-arrow-right" aria-label="circle-arrow-right"></i>&nbsp; Let’s download the <a href="https://gadm.org"><strong>spatial boundary</strong></a> of France</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href=""></a><span class="do">## %</span></span>
-<span id="cb37-2"><a href=""></a></span>
-<span id="cb37-3"><a href=""></a><span class="do">##</span></span>
-<span id="cb37-4"><a href=""></a><span class="do">## DISTANT FILE</span></span>
-<span id="cb37-5"><a href=""></a><span class="do">##</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href=""></a><span class="do">## %</span></span>
+<span id="cb36-2"><a href=""></a></span>
+<span id="cb36-3"><a href=""></a><span class="do">##</span></span>
+<span id="cb36-4"><a href=""></a><span class="do">## DISTANT FILE</span></span>
+<span id="cb36-5"><a href=""></a><span class="do">##</span></span>
+<span id="cb36-6"><a href=""></a></span>
+<span id="cb36-7"><a href=""></a><span class="co"># Base URL ----</span></span>
+<span id="cb36-8"><a href=""></a>base_url <span class="ot">&lt;-</span> <span class="st">"https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/"</span></span>
+<span id="cb36-9"><a href=""></a></span>
+<span id="cb36-10"><a href=""></a><span class="co"># File name ----</span></span>
+<span id="cb36-11"><a href=""></a>file_name <span class="ot">&lt;-</span> <span class="st">"gadm41_FRA.gpkg"</span></span>
+<span id="cb36-12"><a href=""></a></span>
+<span id="cb36-13"><a href=""></a><span class="co"># Full URL ----</span></span>
+<span id="cb36-14"><a href=""></a>(full_url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(base_url, file_name))</span>
+<span id="cb36-15"><a href=""></a><span class="co"># https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/gadm41_FRA.gpkg</span></span>
+<span id="cb36-16"><a href=""></a></span>
+<span id="cb36-17"><a href=""></a><span class="do">##</span></span>
+<span id="cb36-18"><a href=""></a><span class="do">## LOCAL FILE</span></span>
+<span id="cb36-19"><a href=""></a><span class="do">##</span></span>
+<span id="cb36-20"><a href=""></a></span>
+<span id="cb36-21"><a href=""></a><span class="co"># Destination folder ----</span></span>
+<span id="cb36-22"><a href=""></a>(dest_dir <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>))</span>
+<span id="cb36-23"><a href=""></a><span class="co"># /home/nicolas/projects/demo/data</span></span>
+<span id="cb36-24"><a href=""></a></span>
+<span id="cb36-25"><a href=""></a><span class="co"># Destination file ----</span></span>
+<span id="cb36-26"><a href=""></a>(full_path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(dest_dir, file_name))</span>
+<span id="cb36-27"><a href=""></a><span class="co"># /home/nicolas/projects/demo/data/gadm41_FRA.gpkg</span></span>
+<span id="cb36-28"><a href=""></a></span>
+<span id="cb36-29"><a href=""></a><span class="do">##</span></span>
+<span id="cb36-30"><a href=""></a><span class="do">## DOWNLOAD FILE</span></span>
+<span id="cb36-31"><a href=""></a><span class="do">##</span></span>
+<span id="cb36-32"><a href=""></a></span>
+<span id="cb36-33"><a href=""></a><span class="fu">download.file</span>(<span class="at">url =</span> full_url, <span class="at">destfile =</span> full_path, <span class="at">mode =</span> <span class="st">"wb"</span>)</span>
+<span id="cb36-34"><a href=""></a><span class="do">## %</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div><div class="column" style="width:6%;">
+
+</div><div class="column" style="width:47%;">
+<p><i class="fa-solid fa-circle-arrow-right" aria-label="circle-arrow-right"></i>&nbsp; <strong>Convert into function</strong> - <code>v0.1</code></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href=""></a>download_gadm <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb37-2"><a href=""></a>    </span>
+<span id="cb37-3"><a href=""></a>  <span class="do">##</span></span>
+<span id="cb37-4"><a href=""></a>  <span class="do">## DISTANT FILE</span></span>
+<span id="cb37-5"><a href=""></a>  <span class="do">##</span></span>
 <span id="cb37-6"><a href=""></a></span>
-<span id="cb37-7"><a href=""></a><span class="co"># Base URL ----</span></span>
-<span id="cb37-8"><a href=""></a>base_url <span class="ot">&lt;-</span> <span class="st">"https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/"</span></span>
+<span id="cb37-7"><a href=""></a>  <span class="co"># Base URL ----</span></span>
+<span id="cb37-8"><a href=""></a>  base_url <span class="ot">&lt;-</span> <span class="st">"https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/"</span></span>
 <span id="cb37-9"><a href=""></a></span>
-<span id="cb37-10"><a href=""></a><span class="co"># File name ----</span></span>
-<span id="cb37-11"><a href=""></a>file_name <span class="ot">&lt;-</span> <span class="st">"gadm41_FRA.gpkg"</span></span>
+<span id="cb37-10"><a href=""></a>  <span class="co"># File name ----</span></span>
+<span id="cb37-11"><a href=""></a>  file_name <span class="ot">&lt;-</span> <span class="st">"gadm41_FRA.gpkg"</span></span>
 <span id="cb37-12"><a href=""></a></span>
-<span id="cb37-13"><a href=""></a><span class="co"># Full URL ----</span></span>
-<span id="cb37-14"><a href=""></a>(full_url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(base_url, file_name))</span>
-<span id="cb37-15"><a href=""></a><span class="co"># https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/gadm41_FRA.gpkg</span></span>
+<span id="cb37-13"><a href=""></a>  <span class="co"># Full URL ----</span></span>
+<span id="cb37-14"><a href=""></a>  (full_url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(base_url, file_name))</span>
+<span id="cb37-15"><a href=""></a>  <span class="co"># https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/gadm41_FRA.gpkg</span></span>
 <span id="cb37-16"><a href=""></a></span>
-<span id="cb37-17"><a href=""></a><span class="do">##</span></span>
-<span id="cb37-18"><a href=""></a><span class="do">## LOCAL FILE</span></span>
-<span id="cb37-19"><a href=""></a><span class="do">##</span></span>
+<span id="cb37-17"><a href=""></a>  <span class="do">##</span></span>
+<span id="cb37-18"><a href=""></a>  <span class="do">## LOCAL FILE</span></span>
+<span id="cb37-19"><a href=""></a>  <span class="do">##</span></span>
 <span id="cb37-20"><a href=""></a></span>
-<span id="cb37-21"><a href=""></a><span class="co"># Destination folder ----</span></span>
-<span id="cb37-22"><a href=""></a>(dest_dir <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>))</span>
-<span id="cb37-23"><a href=""></a><span class="co"># /home/nicolas/projects/demo/data</span></span>
+<span id="cb37-21"><a href=""></a>  <span class="co"># Destination folder ----</span></span>
+<span id="cb37-22"><a href=""></a>  (dest_dir <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>))</span>
+<span id="cb37-23"><a href=""></a>  <span class="co"># /home/nicolas/projects/demo/data</span></span>
 <span id="cb37-24"><a href=""></a></span>
-<span id="cb37-25"><a href=""></a><span class="co"># Destination file ----</span></span>
-<span id="cb37-26"><a href=""></a>(full_path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(dest_dir, file_name))</span>
-<span id="cb37-27"><a href=""></a><span class="co"># /home/nicolas/projects/demo/data/gadm41_FRA.gpkg</span></span>
+<span id="cb37-25"><a href=""></a>  <span class="co"># Destination file ----</span></span>
+<span id="cb37-26"><a href=""></a>  (full_path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(dest_dir, file_name))</span>
+<span id="cb37-27"><a href=""></a>  <span class="co"># /home/nicolas/projects/demo/data/gadm41_FRA.gpkg</span></span>
 <span id="cb37-28"><a href=""></a></span>
-<span id="cb37-29"><a href=""></a><span class="do">##</span></span>
-<span id="cb37-30"><a href=""></a><span class="do">## DOWNLOAD FILE</span></span>
-<span id="cb37-31"><a href=""></a><span class="do">##</span></span>
+<span id="cb37-29"><a href=""></a>  <span class="do">##</span></span>
+<span id="cb37-30"><a href=""></a>  <span class="do">## DOWNLOAD FILE</span></span>
+<span id="cb37-31"><a href=""></a>  <span class="do">##</span></span>
 <span id="cb37-32"><a href=""></a></span>
-<span id="cb37-33"><a href=""></a><span class="fu">download.file</span>(<span class="at">url =</span> full_url, <span class="at">destfile =</span> full_path, <span class="at">mode =</span> <span class="st">"wb"</span>)</span>
-<span id="cb37-34"><a href=""></a><span class="do">## %</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb37-33"><a href=""></a>  <span class="fu">download.file</span>(<span class="at">url =</span> full_url, <span class="at">destfile =</span> full_path, <span class="at">mode =</span> <span class="st">"wb"</span>)</span>
+<span id="cb37-34"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div></div>
+</section>
+<section id="from-script-to-function-2" class="slide level2">
+<h2>From script to function</h2>
+<div class="columns">
+<div class="column" style="width:47%;">
+<p><i class="fa-solid fa-circle-arrow-right" aria-label="circle-arrow-right"></i>&nbsp; Let’s download the <a href="https://gadm.org"><strong>spatial boundary</strong></a> of France</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href=""></a><span class="do">## %</span></span>
+<span id="cb38-2"><a href=""></a></span>
+<span id="cb38-3"><a href=""></a><span class="do">##</span></span>
+<span id="cb38-4"><a href=""></a><span class="do">## DISTANT FILE</span></span>
+<span id="cb38-5"><a href=""></a><span class="do">##</span></span>
+<span id="cb38-6"><a href=""></a></span>
+<span id="cb38-7"><a href=""></a><span class="co"># Base URL ----</span></span>
+<span id="cb38-8"><a href=""></a>base_url <span class="ot">&lt;-</span> <span class="st">"https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/"</span></span>
+<span id="cb38-9"><a href=""></a></span>
+<span id="cb38-10"><a href=""></a><span class="co"># File name ----</span></span>
+<span id="cb38-11"><a href=""></a>file_name <span class="ot">&lt;-</span> <span class="st">"gadm41_FRA.gpkg"</span></span>
+<span id="cb38-12"><a href=""></a></span>
+<span id="cb38-13"><a href=""></a><span class="co"># Full URL ----</span></span>
+<span id="cb38-14"><a href=""></a>(full_url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(base_url, file_name))</span>
+<span id="cb38-15"><a href=""></a><span class="co"># https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/gadm41_FRA.gpkg</span></span>
+<span id="cb38-16"><a href=""></a></span>
+<span id="cb38-17"><a href=""></a><span class="do">##</span></span>
+<span id="cb38-18"><a href=""></a><span class="do">## LOCAL FILE</span></span>
+<span id="cb38-19"><a href=""></a><span class="do">##</span></span>
+<span id="cb38-20"><a href=""></a></span>
+<span id="cb38-21"><a href=""></a><span class="co"># Destination folder ----</span></span>
+<span id="cb38-22"><a href=""></a>(dest_dir <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>))</span>
+<span id="cb38-23"><a href=""></a><span class="co"># /home/nicolas/projects/demo/data</span></span>
+<span id="cb38-24"><a href=""></a></span>
+<span id="cb38-25"><a href=""></a><span class="co"># Destination file ----</span></span>
+<span id="cb38-26"><a href=""></a>(full_path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(dest_dir, file_name))</span>
+<span id="cb38-27"><a href=""></a><span class="co"># /home/nicolas/projects/demo/data/gadm41_FRA.gpkg</span></span>
+<span id="cb38-28"><a href=""></a></span>
+<span id="cb38-29"><a href=""></a><span class="do">##</span></span>
+<span id="cb38-30"><a href=""></a><span class="do">## DOWNLOAD FILE</span></span>
+<span id="cb38-31"><a href=""></a><span class="do">##</span></span>
+<span id="cb38-32"><a href=""></a></span>
+<span id="cb38-33"><a href=""></a><span class="fu">download.file</span>(<span class="at">url =</span> full_url, <span class="at">destfile =</span> full_path, <span class="at">mode =</span> <span class="st">"wb"</span>)</span>
+<span id="cb38-34"><a href=""></a><span class="do">## %</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div><div class="column" style="width:6%;">
+
+</div><div class="column" style="width:47%;">
+<p><i class="fa-solid fa-circle-arrow-right" aria-label="circle-arrow-right"></i>&nbsp; <strong>Clean comments</strong> - <code>v0.2</code></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href=""></a>download_gadm <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb39-2"><a href=""></a>    </span>
+<span id="cb39-3"><a href=""></a>  <span class="co"># Base URL ----</span></span>
+<span id="cb39-4"><a href=""></a>  base_url <span class="ot">&lt;-</span> <span class="st">"https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/"</span></span>
+<span id="cb39-5"><a href=""></a></span>
+<span id="cb39-6"><a href=""></a>  <span class="co"># File name ----</span></span>
+<span id="cb39-7"><a href=""></a>  file_name <span class="ot">&lt;-</span> <span class="st">"gadm41_FRA.gpkg"</span></span>
+<span id="cb39-8"><a href=""></a></span>
+<span id="cb39-9"><a href=""></a>  <span class="co"># Full URL ----</span></span>
+<span id="cb39-10"><a href=""></a>  full_url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(base_url, file_name)</span>
+<span id="cb39-11"><a href=""></a></span>
+<span id="cb39-12"><a href=""></a>  <span class="co"># Destination folder ----</span></span>
+<span id="cb39-13"><a href=""></a>  dest_dir <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>)</span>
+<span id="cb39-14"><a href=""></a></span>
+<span id="cb39-15"><a href=""></a>  <span class="co"># Destination file ----</span></span>
+<span id="cb39-16"><a href=""></a>  full_path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(dest_dir, file_name)</span>
+<span id="cb39-17"><a href=""></a></span>
+<span id="cb39-18"><a href=""></a>  <span class="co"># Download file ----</span></span>
+<span id="cb39-19"><a href=""></a>  <span class="fu">download.file</span>(<span class="at">url =</span> full_url, <span class="at">destfile =</span> full_path, <span class="at">mode =</span> <span class="st">"wb"</span>)</span>
+<span id="cb39-20"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div></div>
+</section>
+<section id="from-script-to-function-3" class="slide level2">
+<h2>From script to function</h2>
+<div class="columns">
+<div class="column" style="width:47%;">
+<p><i class="fa-solid fa-circle-arrow-right" aria-label="circle-arrow-right"></i>&nbsp; Let’s download the <a href="https://gadm.org"><strong>spatial boundary</strong></a> of France</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href=""></a><span class="do">## %</span></span>
+<span id="cb40-2"><a href=""></a></span>
+<span id="cb40-3"><a href=""></a><span class="do">##</span></span>
+<span id="cb40-4"><a href=""></a><span class="do">## DISTANT FILE</span></span>
+<span id="cb40-5"><a href=""></a><span class="do">##</span></span>
+<span id="cb40-6"><a href=""></a></span>
+<span id="cb40-7"><a href=""></a><span class="co"># Base URL ----</span></span>
+<span id="cb40-8"><a href=""></a>base_url <span class="ot">&lt;-</span> <span class="st">"https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/"</span></span>
+<span id="cb40-9"><a href=""></a></span>
+<span id="cb40-10"><a href=""></a><span class="co"># File name ----</span></span>
+<span id="cb40-11"><a href=""></a>file_name <span class="ot">&lt;-</span> <span class="st">"gadm41_FRA.gpkg"</span></span>
+<span id="cb40-12"><a href=""></a></span>
+<span id="cb40-13"><a href=""></a><span class="co"># Full URL ----</span></span>
+<span id="cb40-14"><a href=""></a>(full_url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(base_url, file_name))</span>
+<span id="cb40-15"><a href=""></a><span class="co"># https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/gadm41_FRA.gpkg</span></span>
+<span id="cb40-16"><a href=""></a></span>
+<span id="cb40-17"><a href=""></a><span class="do">##</span></span>
+<span id="cb40-18"><a href=""></a><span class="do">## LOCAL FILE</span></span>
+<span id="cb40-19"><a href=""></a><span class="do">##</span></span>
+<span id="cb40-20"><a href=""></a></span>
+<span id="cb40-21"><a href=""></a><span class="co"># Destination folder ----</span></span>
+<span id="cb40-22"><a href=""></a>(dest_dir <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>))</span>
+<span id="cb40-23"><a href=""></a><span class="co"># /home/nicolas/projects/demo/data</span></span>
+<span id="cb40-24"><a href=""></a></span>
+<span id="cb40-25"><a href=""></a><span class="co"># Destination file ----</span></span>
+<span id="cb40-26"><a href=""></a>(full_path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(dest_dir, file_name))</span>
+<span id="cb40-27"><a href=""></a><span class="co"># /home/nicolas/projects/demo/data/gadm41_FRA.gpkg</span></span>
+<span id="cb40-28"><a href=""></a></span>
+<span id="cb40-29"><a href=""></a><span class="do">##</span></span>
+<span id="cb40-30"><a href=""></a><span class="do">## DOWNLOAD FILE</span></span>
+<span id="cb40-31"><a href=""></a><span class="do">##</span></span>
+<span id="cb40-32"><a href=""></a></span>
+<span id="cb40-33"><a href=""></a><span class="fu">download.file</span>(<span class="at">url =</span> full_url, <span class="at">destfile =</span> full_path, <span class="at">mode =</span> <span class="st">"wb"</span>)</span>
+<span id="cb40-34"><a href=""></a><span class="do">## %</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div><div class="column" style="width:6%;">
 
 </div><div class="column" style="width:47%;">
 <p><i class="fa-solid fa-circle-arrow-right" aria-label="circle-arrow-right"></i>&nbsp; <strong>Function return</strong> - <code>v0.3</code></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href=""></a>download_gadm <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
-<span id="cb38-2"><a href=""></a>    </span>
-<span id="cb38-3"><a href=""></a>  <span class="co"># Base URL ----</span></span>
-<span id="cb38-4"><a href=""></a>  base_url <span class="ot">&lt;-</span> <span class="st">"https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/"</span></span>
-<span id="cb38-5"><a href=""></a></span>
-<span id="cb38-6"><a href=""></a>  <span class="co"># File name ----</span></span>
-<span id="cb38-7"><a href=""></a>  file_name <span class="ot">&lt;-</span> <span class="st">"gadm41_FRA.gpkg"</span></span>
-<span id="cb38-8"><a href=""></a></span>
-<span id="cb38-9"><a href=""></a>  <span class="co"># Full URL ----</span></span>
-<span id="cb38-10"><a href=""></a>  full_url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(base_url, file_name)</span>
-<span id="cb38-11"><a href=""></a></span>
-<span id="cb38-12"><a href=""></a>  <span class="co"># Destination folder ----</span></span>
-<span id="cb38-13"><a href=""></a>  dest_dir <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>)</span>
-<span id="cb38-14"><a href=""></a></span>
-<span id="cb38-15"><a href=""></a>  <span class="co"># Destination file ----</span></span>
-<span id="cb38-16"><a href=""></a>  full_path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(dest_dir, file_name)</span>
-<span id="cb38-17"><a href=""></a></span>
-<span id="cb38-18"><a href=""></a>  <span class="co"># Download file ----</span></span>
-<span id="cb38-19"><a href=""></a>  <span class="fu">download.file</span>(<span class="at">url =</span> full_url, <span class="at">destfile =</span> full_path, <span class="at">mode =</span> <span class="st">"wb"</span>)</span>
-<span id="cb38-20"><a href=""></a></span>
-<span id="cb38-21"><a href=""></a>  full_path</span>
-<span id="cb38-22"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href=""></a>download_gadm <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb41-2"><a href=""></a>    </span>
+<span id="cb41-3"><a href=""></a>  <span class="co"># Base URL ----</span></span>
+<span id="cb41-4"><a href=""></a>  base_url <span class="ot">&lt;-</span> <span class="st">"https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/"</span></span>
+<span id="cb41-5"><a href=""></a></span>
+<span id="cb41-6"><a href=""></a>  <span class="co"># File name ----</span></span>
+<span id="cb41-7"><a href=""></a>  file_name <span class="ot">&lt;-</span> <span class="st">"gadm41_FRA.gpkg"</span></span>
+<span id="cb41-8"><a href=""></a></span>
+<span id="cb41-9"><a href=""></a>  <span class="co"># Full URL ----</span></span>
+<span id="cb41-10"><a href=""></a>  full_url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(base_url, file_name)</span>
+<span id="cb41-11"><a href=""></a></span>
+<span id="cb41-12"><a href=""></a>  <span class="co"># Destination folder ----</span></span>
+<span id="cb41-13"><a href=""></a>  dest_dir <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>)</span>
+<span id="cb41-14"><a href=""></a></span>
+<span id="cb41-15"><a href=""></a>  <span class="co"># Destination file ----</span></span>
+<span id="cb41-16"><a href=""></a>  full_path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(dest_dir, file_name)</span>
+<span id="cb41-17"><a href=""></a></span>
+<span id="cb41-18"><a href=""></a>  <span class="co"># Download file ----</span></span>
+<span id="cb41-19"><a href=""></a>  <span class="fu">download.file</span>(<span class="at">url =</span> full_url, <span class="at">destfile =</span> full_path, <span class="at">mode =</span> <span class="st">"wb"</span>)</span>
+<span id="cb41-20"><a href=""></a></span>
+<span id="cb41-21"><a href=""></a>  full_path</span>
+<span id="cb41-22"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div></div>
 </section>
-<section id="case-study-from-script-to-function-4" class="slide level2">
-<h2>Case study: From script to function</h2>
+<section id="from-script-to-function-4" class="slide level2">
+<h2>From script to function</h2>
 <div class="columns">
 <div class="column" style="width:47%;">
 <p><i class="fa-solid fa-circle-arrow-right" aria-label="circle-arrow-right"></i>&nbsp; Let’s download the <a href="https://gadm.org"><strong>spatial boundary</strong></a> of France</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href=""></a><span class="do">## %</span></span>
-<span id="cb39-2"><a href=""></a></span>
-<span id="cb39-3"><a href=""></a><span class="do">##</span></span>
-<span id="cb39-4"><a href=""></a><span class="do">## DISTANT FILE</span></span>
-<span id="cb39-5"><a href=""></a><span class="do">##</span></span>
-<span id="cb39-6"><a href=""></a></span>
-<span id="cb39-7"><a href=""></a><span class="co"># Base URL ----</span></span>
-<span id="cb39-8"><a href=""></a>base_url <span class="ot">&lt;-</span> <span class="st">"https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/"</span></span>
-<span id="cb39-9"><a href=""></a></span>
-<span id="cb39-10"><a href=""></a><span class="co"># File name ----</span></span>
-<span id="cb39-11"><a href=""></a>file_name <span class="ot">&lt;-</span> <span class="st">"gadm41_FRA.gpkg"</span></span>
-<span id="cb39-12"><a href=""></a></span>
-<span id="cb39-13"><a href=""></a><span class="co"># Full URL ----</span></span>
-<span id="cb39-14"><a href=""></a>(full_url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(base_url, file_name))</span>
-<span id="cb39-15"><a href=""></a><span class="co"># https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/gadm41_FRA.gpkg</span></span>
-<span id="cb39-16"><a href=""></a></span>
-<span id="cb39-17"><a href=""></a><span class="do">##</span></span>
-<span id="cb39-18"><a href=""></a><span class="do">## LOCAL FILE</span></span>
-<span id="cb39-19"><a href=""></a><span class="do">##</span></span>
-<span id="cb39-20"><a href=""></a></span>
-<span id="cb39-21"><a href=""></a><span class="co"># Destination folder ----</span></span>
-<span id="cb39-22"><a href=""></a>(dest_dir <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>))</span>
-<span id="cb39-23"><a href=""></a><span class="co"># /home/nicolas/projects/demo/data</span></span>
-<span id="cb39-24"><a href=""></a></span>
-<span id="cb39-25"><a href=""></a><span class="co"># Destination file ----</span></span>
-<span id="cb39-26"><a href=""></a>(full_path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(dest_dir, file_name))</span>
-<span id="cb39-27"><a href=""></a><span class="co"># /home/nicolas/projects/demo/data/gadm41_FRA.gpkg</span></span>
-<span id="cb39-28"><a href=""></a></span>
-<span id="cb39-29"><a href=""></a><span class="do">##</span></span>
-<span id="cb39-30"><a href=""></a><span class="do">## DOWNLOAD FILE</span></span>
-<span id="cb39-31"><a href=""></a><span class="do">##</span></span>
-<span id="cb39-32"><a href=""></a></span>
-<span id="cb39-33"><a href=""></a><span class="fu">download.file</span>(<span class="at">url =</span> full_url, <span class="at">destfile =</span> full_path, <span class="at">mode =</span> <span class="st">"wb"</span>)</span>
-<span id="cb39-34"><a href=""></a><span class="do">## %</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href=""></a><span class="do">## %</span></span>
+<span id="cb42-2"><a href=""></a></span>
+<span id="cb42-3"><a href=""></a><span class="do">##</span></span>
+<span id="cb42-4"><a href=""></a><span class="do">## DISTANT FILE</span></span>
+<span id="cb42-5"><a href=""></a><span class="do">##</span></span>
+<span id="cb42-6"><a href=""></a></span>
+<span id="cb42-7"><a href=""></a><span class="co"># Base URL ----</span></span>
+<span id="cb42-8"><a href=""></a>base_url <span class="ot">&lt;-</span> <span class="st">"https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/"</span></span>
+<span id="cb42-9"><a href=""></a></span>
+<span id="cb42-10"><a href=""></a><span class="co"># File name ----</span></span>
+<span id="cb42-11"><a href=""></a>file_name <span class="ot">&lt;-</span> <span class="st">"gadm41_FRA.gpkg"</span></span>
+<span id="cb42-12"><a href=""></a></span>
+<span id="cb42-13"><a href=""></a><span class="co"># Full URL ----</span></span>
+<span id="cb42-14"><a href=""></a>(full_url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(base_url, file_name))</span>
+<span id="cb42-15"><a href=""></a><span class="co"># https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/gadm41_FRA.gpkg</span></span>
+<span id="cb42-16"><a href=""></a></span>
+<span id="cb42-17"><a href=""></a><span class="do">##</span></span>
+<span id="cb42-18"><a href=""></a><span class="do">## LOCAL FILE</span></span>
+<span id="cb42-19"><a href=""></a><span class="do">##</span></span>
+<span id="cb42-20"><a href=""></a></span>
+<span id="cb42-21"><a href=""></a><span class="co"># Destination folder ----</span></span>
+<span id="cb42-22"><a href=""></a>(dest_dir <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>))</span>
+<span id="cb42-23"><a href=""></a><span class="co"># /home/nicolas/projects/demo/data</span></span>
+<span id="cb42-24"><a href=""></a></span>
+<span id="cb42-25"><a href=""></a><span class="co"># Destination file ----</span></span>
+<span id="cb42-26"><a href=""></a>(full_path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(dest_dir, file_name))</span>
+<span id="cb42-27"><a href=""></a><span class="co"># /home/nicolas/projects/demo/data/gadm41_FRA.gpkg</span></span>
+<span id="cb42-28"><a href=""></a></span>
+<span id="cb42-29"><a href=""></a><span class="do">##</span></span>
+<span id="cb42-30"><a href=""></a><span class="do">## DOWNLOAD FILE</span></span>
+<span id="cb42-31"><a href=""></a><span class="do">##</span></span>
+<span id="cb42-32"><a href=""></a></span>
+<span id="cb42-33"><a href=""></a><span class="fu">download.file</span>(<span class="at">url =</span> full_url, <span class="at">destfile =</span> full_path, <span class="at">mode =</span> <span class="st">"wb"</span>)</span>
+<span id="cb42-34"><a href=""></a><span class="do">## %</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div><div class="column" style="width:6%;">
 
 </div><div class="column" style="width:47%;">
 <p><i class="fa-solid fa-circle-arrow-right" aria-label="circle-arrow-right"></i>&nbsp; <strong>Invisible return</strong> - <code>v0.4</code></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href=""></a>download_gadm <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
-<span id="cb40-2"><a href=""></a>    </span>
-<span id="cb40-3"><a href=""></a>  <span class="co"># Base URL ----</span></span>
-<span id="cb40-4"><a href=""></a>  base_url <span class="ot">&lt;-</span> <span class="st">"https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/"</span></span>
-<span id="cb40-5"><a href=""></a></span>
-<span id="cb40-6"><a href=""></a>  <span class="co"># File name ----</span></span>
-<span id="cb40-7"><a href=""></a>  file_name <span class="ot">&lt;-</span> <span class="st">"gadm41_FRA.gpkg"</span></span>
-<span id="cb40-8"><a href=""></a></span>
-<span id="cb40-9"><a href=""></a>  <span class="co"># Full URL ----</span></span>
-<span id="cb40-10"><a href=""></a>  full_url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(base_url, file_name)</span>
-<span id="cb40-11"><a href=""></a></span>
-<span id="cb40-12"><a href=""></a>  <span class="co"># Destination folder ----</span></span>
-<span id="cb40-13"><a href=""></a>  dest_dir <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>)</span>
-<span id="cb40-14"><a href=""></a></span>
-<span id="cb40-15"><a href=""></a>  <span class="co"># Destination file ----</span></span>
-<span id="cb40-16"><a href=""></a>  full_path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(dest_dir, file_name)</span>
-<span id="cb40-17"><a href=""></a></span>
-<span id="cb40-18"><a href=""></a>  <span class="co"># Download file ----</span></span>
-<span id="cb40-19"><a href=""></a>  <span class="fu">download.file</span>(<span class="at">url =</span> full_url, <span class="at">destfile =</span> full_path, <span class="at">mode =</span> <span class="st">"wb"</span>)</span>
-<span id="cb40-20"><a href=""></a></span>
-<span id="cb40-21"><a href=""></a>  <span class="fu">invisible</span>(full_path)</span>
-<span id="cb40-22"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href=""></a>download_gadm <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb43-2"><a href=""></a>    </span>
+<span id="cb43-3"><a href=""></a>  <span class="co"># Base URL ----</span></span>
+<span id="cb43-4"><a href=""></a>  base_url <span class="ot">&lt;-</span> <span class="st">"https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/"</span></span>
+<span id="cb43-5"><a href=""></a></span>
+<span id="cb43-6"><a href=""></a>  <span class="co"># File name ----</span></span>
+<span id="cb43-7"><a href=""></a>  file_name <span class="ot">&lt;-</span> <span class="st">"gadm41_FRA.gpkg"</span></span>
+<span id="cb43-8"><a href=""></a></span>
+<span id="cb43-9"><a href=""></a>  <span class="co"># Full URL ----</span></span>
+<span id="cb43-10"><a href=""></a>  full_url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(base_url, file_name)</span>
+<span id="cb43-11"><a href=""></a></span>
+<span id="cb43-12"><a href=""></a>  <span class="co"># Destination folder ----</span></span>
+<span id="cb43-13"><a href=""></a>  dest_dir <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>)</span>
+<span id="cb43-14"><a href=""></a></span>
+<span id="cb43-15"><a href=""></a>  <span class="co"># Destination file ----</span></span>
+<span id="cb43-16"><a href=""></a>  full_path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(dest_dir, file_name)</span>
+<span id="cb43-17"><a href=""></a></span>
+<span id="cb43-18"><a href=""></a>  <span class="co"># Download file ----</span></span>
+<span id="cb43-19"><a href=""></a>  <span class="fu">download.file</span>(<span class="at">url =</span> full_url, <span class="at">destfile =</span> full_path, <span class="at">mode =</span> <span class="st">"wb"</span>)</span>
+<span id="cb43-20"><a href=""></a></span>
+<span id="cb43-21"><a href=""></a>  <span class="fu">invisible</span>(full_path)</span>
+<span id="cb43-22"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div></div>
 </section>
-<section id="case-study-from-script-to-function-5" class="slide level2">
-<h2>Case study: From script to function</h2>
+<section id="from-script-to-function-5" class="slide level2">
+<h2>From script to function</h2>
 <div class="columns">
 <div class="column" style="width:47%;">
 <p><i class="fa-solid fa-circle-arrow-right" aria-label="circle-arrow-right"></i>&nbsp; Let’s download the <a href="https://gadm.org"><strong>spatial boundary</strong></a> of France</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href=""></a><span class="do">## %</span></span>
-<span id="cb41-2"><a href=""></a></span>
-<span id="cb41-3"><a href=""></a><span class="do">##</span></span>
-<span id="cb41-4"><a href=""></a><span class="do">## DISTANT FILE</span></span>
-<span id="cb41-5"><a href=""></a><span class="do">##</span></span>
-<span id="cb41-6"><a href=""></a></span>
-<span id="cb41-7"><a href=""></a><span class="co"># Base URL ----</span></span>
-<span id="cb41-8"><a href=""></a>base_url <span class="ot">&lt;-</span> <span class="st">"https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/"</span></span>
-<span id="cb41-9"><a href=""></a></span>
-<span id="cb41-10"><a href=""></a><span class="co"># File name ----</span></span>
-<span id="cb41-11"><a href=""></a>file_name <span class="ot">&lt;-</span> <span class="st">"gadm41_FRA.gpkg"</span></span>
-<span id="cb41-12"><a href=""></a></span>
-<span id="cb41-13"><a href=""></a><span class="co"># Full URL ----</span></span>
-<span id="cb41-14"><a href=""></a>(full_url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(base_url, file_name))</span>
-<span id="cb41-15"><a href=""></a><span class="co"># https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/gadm41_FRA.gpkg</span></span>
-<span id="cb41-16"><a href=""></a></span>
-<span id="cb41-17"><a href=""></a><span class="do">##</span></span>
-<span id="cb41-18"><a href=""></a><span class="do">## LOCAL FILE</span></span>
-<span id="cb41-19"><a href=""></a><span class="do">##</span></span>
-<span id="cb41-20"><a href=""></a></span>
-<span id="cb41-21"><a href=""></a><span class="co"># Destination folder ----</span></span>
-<span id="cb41-22"><a href=""></a>(dest_dir <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>))</span>
-<span id="cb41-23"><a href=""></a><span class="co"># /home/nicolas/projects/demo/data</span></span>
-<span id="cb41-24"><a href=""></a></span>
-<span id="cb41-25"><a href=""></a><span class="co"># Destination file ----</span></span>
-<span id="cb41-26"><a href=""></a>(full_path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(dest_dir, file_name))</span>
-<span id="cb41-27"><a href=""></a><span class="co"># /home/nicolas/projects/demo/data/gadm41_FRA.gpkg</span></span>
-<span id="cb41-28"><a href=""></a></span>
-<span id="cb41-29"><a href=""></a><span class="do">##</span></span>
-<span id="cb41-30"><a href=""></a><span class="do">## DOWNLOAD FILE</span></span>
-<span id="cb41-31"><a href=""></a><span class="do">##</span></span>
-<span id="cb41-32"><a href=""></a></span>
-<span id="cb41-33"><a href=""></a><span class="fu">download.file</span>(<span class="at">url =</span> full_url, <span class="at">destfile =</span> full_path, <span class="at">mode =</span> <span class="st">"wb"</span>)</span>
-<span id="cb41-34"><a href=""></a><span class="do">## %</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href=""></a><span class="do">## %</span></span>
+<span id="cb44-2"><a href=""></a></span>
+<span id="cb44-3"><a href=""></a><span class="do">##</span></span>
+<span id="cb44-4"><a href=""></a><span class="do">## DISTANT FILE</span></span>
+<span id="cb44-5"><a href=""></a><span class="do">##</span></span>
+<span id="cb44-6"><a href=""></a></span>
+<span id="cb44-7"><a href=""></a><span class="co"># Base URL ----</span></span>
+<span id="cb44-8"><a href=""></a>base_url <span class="ot">&lt;-</span> <span class="st">"https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/"</span></span>
+<span id="cb44-9"><a href=""></a></span>
+<span id="cb44-10"><a href=""></a><span class="co"># File name ----</span></span>
+<span id="cb44-11"><a href=""></a>file_name <span class="ot">&lt;-</span> <span class="st">"gadm41_FRA.gpkg"</span></span>
+<span id="cb44-12"><a href=""></a></span>
+<span id="cb44-13"><a href=""></a><span class="co"># Full URL ----</span></span>
+<span id="cb44-14"><a href=""></a>(full_url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(base_url, file_name))</span>
+<span id="cb44-15"><a href=""></a><span class="co"># https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/gadm41_FRA.gpkg</span></span>
+<span id="cb44-16"><a href=""></a></span>
+<span id="cb44-17"><a href=""></a><span class="do">##</span></span>
+<span id="cb44-18"><a href=""></a><span class="do">## LOCAL FILE</span></span>
+<span id="cb44-19"><a href=""></a><span class="do">##</span></span>
+<span id="cb44-20"><a href=""></a></span>
+<span id="cb44-21"><a href=""></a><span class="co"># Destination folder ----</span></span>
+<span id="cb44-22"><a href=""></a>(dest_dir <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>))</span>
+<span id="cb44-23"><a href=""></a><span class="co"># /home/nicolas/projects/demo/data</span></span>
+<span id="cb44-24"><a href=""></a></span>
+<span id="cb44-25"><a href=""></a><span class="co"># Destination file ----</span></span>
+<span id="cb44-26"><a href=""></a>(full_path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(dest_dir, file_name))</span>
+<span id="cb44-27"><a href=""></a><span class="co"># /home/nicolas/projects/demo/data/gadm41_FRA.gpkg</span></span>
+<span id="cb44-28"><a href=""></a></span>
+<span id="cb44-29"><a href=""></a><span class="do">##</span></span>
+<span id="cb44-30"><a href=""></a><span class="do">## DOWNLOAD FILE</span></span>
+<span id="cb44-31"><a href=""></a><span class="do">##</span></span>
+<span id="cb44-32"><a href=""></a></span>
+<span id="cb44-33"><a href=""></a><span class="fu">download.file</span>(<span class="at">url =</span> full_url, <span class="at">destfile =</span> full_path, <span class="at">mode =</span> <span class="st">"wb"</span>)</span>
+<span id="cb44-34"><a href=""></a><span class="do">## %</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div><div class="column" style="width:6%;">
 
 </div><div class="column" style="width:47%;">
 <p><i class="fa-solid fa-circle-arrow-right" aria-label="circle-arrow-right"></i>&nbsp; <strong>Add ‘file_name’ argument</strong> - <code>v0.5</code></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href=""></a>download_gadm <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">file_name =</span> <span class="st">"gadm41_FRA.gpkg"</span>) {</span>
-<span id="cb42-2"><a href=""></a>    </span>
-<span id="cb42-3"><a href=""></a>  <span class="co"># Base URL ----</span></span>
-<span id="cb42-4"><a href=""></a>  base_url <span class="ot">&lt;-</span> <span class="st">"https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/"</span></span>
-<span id="cb42-5"><a href=""></a></span>
-<span id="cb42-6"><a href=""></a>  <span class="co"># File name ----</span></span>
-<span id="cb42-7"><a href=""></a>  <span class="co"># </span></span>
-<span id="cb42-8"><a href=""></a></span>
-<span id="cb42-9"><a href=""></a>  <span class="co"># Full URL ----</span></span>
-<span id="cb42-10"><a href=""></a>  full_url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(base_url, file_name)</span>
-<span id="cb42-11"><a href=""></a></span>
-<span id="cb42-12"><a href=""></a>  <span class="co"># Destination folder ----</span></span>
-<span id="cb42-13"><a href=""></a>  dest_dir <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>)</span>
-<span id="cb42-14"><a href=""></a></span>
-<span id="cb42-15"><a href=""></a>  <span class="co"># Destination file ----</span></span>
-<span id="cb42-16"><a href=""></a>  full_path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(dest_dir, file_name)</span>
-<span id="cb42-17"><a href=""></a></span>
-<span id="cb42-18"><a href=""></a>  <span class="co"># Download file ----</span></span>
-<span id="cb42-19"><a href=""></a>  <span class="fu">download.file</span>(<span class="at">url =</span> full_url, <span class="at">destfile =</span> full_path, <span class="at">mode =</span> <span class="st">"wb"</span>)</span>
-<span id="cb42-20"><a href=""></a></span>
-<span id="cb42-21"><a href=""></a>  <span class="fu">invisible</span>(full_path)</span>
-<span id="cb42-22"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href=""></a>download_gadm <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">file_name =</span> <span class="st">"gadm41_FRA.gpkg"</span>) {</span>
+<span id="cb45-2"><a href=""></a>    </span>
+<span id="cb45-3"><a href=""></a>  <span class="co"># Base URL ----</span></span>
+<span id="cb45-4"><a href=""></a>  base_url <span class="ot">&lt;-</span> <span class="st">"https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/"</span></span>
+<span id="cb45-5"><a href=""></a></span>
+<span id="cb45-6"><a href=""></a>  <span class="co"># File name ----</span></span>
+<span id="cb45-7"><a href=""></a>  <span class="co"># </span></span>
+<span id="cb45-8"><a href=""></a></span>
+<span id="cb45-9"><a href=""></a>  <span class="co"># Full URL ----</span></span>
+<span id="cb45-10"><a href=""></a>  full_url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(base_url, file_name)</span>
+<span id="cb45-11"><a href=""></a></span>
+<span id="cb45-12"><a href=""></a>  <span class="co"># Destination folder ----</span></span>
+<span id="cb45-13"><a href=""></a>  dest_dir <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>)</span>
+<span id="cb45-14"><a href=""></a></span>
+<span id="cb45-15"><a href=""></a>  <span class="co"># Destination file ----</span></span>
+<span id="cb45-16"><a href=""></a>  full_path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(dest_dir, file_name)</span>
+<span id="cb45-17"><a href=""></a></span>
+<span id="cb45-18"><a href=""></a>  <span class="co"># Download file ----</span></span>
+<span id="cb45-19"><a href=""></a>  <span class="fu">download.file</span>(<span class="at">url =</span> full_url, <span class="at">destfile =</span> full_path, <span class="at">mode =</span> <span class="st">"wb"</span>)</span>
+<span id="cb45-20"><a href=""></a></span>
+<span id="cb45-21"><a href=""></a>  <span class="fu">invisible</span>(full_path)</span>
+<span id="cb45-22"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div></div>
 </section>
-<section id="case-study-from-script-to-function-6" class="slide level2">
-<h2>Case study: From script to function</h2>
+<section id="from-script-to-function-6" class="slide level2">
+<h2>From script to function</h2>
 <div class="columns">
 <div class="column" style="width:47%;">
 <p><i class="fa-solid fa-circle-arrow-right" aria-label="circle-arrow-right"></i>&nbsp; Let’s download the <a href="https://gadm.org"><strong>spatial boundary</strong></a> of France</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href=""></a><span class="do">## %</span></span>
-<span id="cb43-2"><a href=""></a></span>
-<span id="cb43-3"><a href=""></a><span class="do">##</span></span>
-<span id="cb43-4"><a href=""></a><span class="do">## DISTANT FILE</span></span>
-<span id="cb43-5"><a href=""></a><span class="do">##</span></span>
-<span id="cb43-6"><a href=""></a></span>
-<span id="cb43-7"><a href=""></a><span class="co"># Base URL ----</span></span>
-<span id="cb43-8"><a href=""></a>base_url <span class="ot">&lt;-</span> <span class="st">"https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/"</span></span>
-<span id="cb43-9"><a href=""></a></span>
-<span id="cb43-10"><a href=""></a><span class="co"># File name ----</span></span>
-<span id="cb43-11"><a href=""></a>file_name <span class="ot">&lt;-</span> <span class="st">"gadm41_FRA.gpkg"</span></span>
-<span id="cb43-12"><a href=""></a></span>
-<span id="cb43-13"><a href=""></a><span class="co"># Full URL ----</span></span>
-<span id="cb43-14"><a href=""></a>(full_url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(base_url, file_name))</span>
-<span id="cb43-15"><a href=""></a><span class="co"># https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/gadm41_FRA.gpkg</span></span>
-<span id="cb43-16"><a href=""></a></span>
-<span id="cb43-17"><a href=""></a><span class="do">##</span></span>
-<span id="cb43-18"><a href=""></a><span class="do">## LOCAL FILE</span></span>
-<span id="cb43-19"><a href=""></a><span class="do">##</span></span>
-<span id="cb43-20"><a href=""></a></span>
-<span id="cb43-21"><a href=""></a><span class="co"># Destination folder ----</span></span>
-<span id="cb43-22"><a href=""></a>(dest_dir <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>))</span>
-<span id="cb43-23"><a href=""></a><span class="co"># /home/nicolas/projects/demo/data</span></span>
-<span id="cb43-24"><a href=""></a></span>
-<span id="cb43-25"><a href=""></a><span class="co"># Destination file ----</span></span>
-<span id="cb43-26"><a href=""></a>(full_path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(dest_dir, file_name))</span>
-<span id="cb43-27"><a href=""></a><span class="co"># /home/nicolas/projects/demo/data/gadm41_FRA.gpkg</span></span>
-<span id="cb43-28"><a href=""></a></span>
-<span id="cb43-29"><a href=""></a><span class="do">##</span></span>
-<span id="cb43-30"><a href=""></a><span class="do">## DOWNLOAD FILE</span></span>
-<span id="cb43-31"><a href=""></a><span class="do">##</span></span>
-<span id="cb43-32"><a href=""></a></span>
-<span id="cb43-33"><a href=""></a><span class="fu">download.file</span>(<span class="at">url =</span> full_url, <span class="at">destfile =</span> full_path, <span class="at">mode =</span> <span class="st">"wb"</span>)</span>
-<span id="cb43-34"><a href=""></a><span class="do">## %</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href=""></a><span class="do">## %</span></span>
+<span id="cb46-2"><a href=""></a></span>
+<span id="cb46-3"><a href=""></a><span class="do">##</span></span>
+<span id="cb46-4"><a href=""></a><span class="do">## DISTANT FILE</span></span>
+<span id="cb46-5"><a href=""></a><span class="do">##</span></span>
+<span id="cb46-6"><a href=""></a></span>
+<span id="cb46-7"><a href=""></a><span class="co"># Base URL ----</span></span>
+<span id="cb46-8"><a href=""></a>base_url <span class="ot">&lt;-</span> <span class="st">"https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/"</span></span>
+<span id="cb46-9"><a href=""></a></span>
+<span id="cb46-10"><a href=""></a><span class="co"># File name ----</span></span>
+<span id="cb46-11"><a href=""></a>file_name <span class="ot">&lt;-</span> <span class="st">"gadm41_FRA.gpkg"</span></span>
+<span id="cb46-12"><a href=""></a></span>
+<span id="cb46-13"><a href=""></a><span class="co"># Full URL ----</span></span>
+<span id="cb46-14"><a href=""></a>(full_url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(base_url, file_name))</span>
+<span id="cb46-15"><a href=""></a><span class="co"># https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/gadm41_FRA.gpkg</span></span>
+<span id="cb46-16"><a href=""></a></span>
+<span id="cb46-17"><a href=""></a><span class="do">##</span></span>
+<span id="cb46-18"><a href=""></a><span class="do">## LOCAL FILE</span></span>
+<span id="cb46-19"><a href=""></a><span class="do">##</span></span>
+<span id="cb46-20"><a href=""></a></span>
+<span id="cb46-21"><a href=""></a><span class="co"># Destination folder ----</span></span>
+<span id="cb46-22"><a href=""></a>(dest_dir <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>))</span>
+<span id="cb46-23"><a href=""></a><span class="co"># /home/nicolas/projects/demo/data</span></span>
+<span id="cb46-24"><a href=""></a></span>
+<span id="cb46-25"><a href=""></a><span class="co"># Destination file ----</span></span>
+<span id="cb46-26"><a href=""></a>(full_path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(dest_dir, file_name))</span>
+<span id="cb46-27"><a href=""></a><span class="co"># /home/nicolas/projects/demo/data/gadm41_FRA.gpkg</span></span>
+<span id="cb46-28"><a href=""></a></span>
+<span id="cb46-29"><a href=""></a><span class="do">##</span></span>
+<span id="cb46-30"><a href=""></a><span class="do">## DOWNLOAD FILE</span></span>
+<span id="cb46-31"><a href=""></a><span class="do">##</span></span>
+<span id="cb46-32"><a href=""></a></span>
+<span id="cb46-33"><a href=""></a><span class="fu">download.file</span>(<span class="at">url =</span> full_url, <span class="at">destfile =</span> full_path, <span class="at">mode =</span> <span class="st">"wb"</span>)</span>
+<span id="cb46-34"><a href=""></a><span class="do">## %</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div><div class="column" style="width:6%;">
 
 </div><div class="column" style="width:47%;">
 <p><i class="fa-solid fa-circle-arrow-right" aria-label="circle-arrow-right"></i>&nbsp; <strong>Rename ‘file_name’ argument</strong> - <code>v0.6</code></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href=""></a>download_gadm <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">country =</span> <span class="st">"FRA"</span>) {</span>
-<span id="cb44-2"><a href=""></a>    </span>
-<span id="cb44-3"><a href=""></a>  <span class="co"># Base URL ----</span></span>
-<span id="cb44-4"><a href=""></a>  base_url <span class="ot">&lt;-</span> <span class="st">"https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/"</span></span>
-<span id="cb44-5"><a href=""></a></span>
-<span id="cb44-6"><a href=""></a>  <span class="co"># File name ----</span></span>
-<span id="cb44-7"><a href=""></a>  file_name <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"gadm41_"</span>, country, <span class="st">".gpkg"</span>)</span>
-<span id="cb44-8"><a href=""></a></span>
-<span id="cb44-9"><a href=""></a>  <span class="co"># Full URL ----</span></span>
-<span id="cb44-10"><a href=""></a>  full_url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(base_url, file_name)</span>
-<span id="cb44-11"><a href=""></a></span>
-<span id="cb44-12"><a href=""></a>  <span class="co"># Destination folder ----</span></span>
-<span id="cb44-13"><a href=""></a>  dest_dir <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>)</span>
-<span id="cb44-14"><a href=""></a></span>
-<span id="cb44-15"><a href=""></a>  <span class="co"># Destination file ----</span></span>
-<span id="cb44-16"><a href=""></a>  full_path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(dest_dir, file_name)</span>
-<span id="cb44-17"><a href=""></a></span>
-<span id="cb44-18"><a href=""></a>  <span class="co"># Download file ----</span></span>
-<span id="cb44-19"><a href=""></a>  <span class="fu">download.file</span>(<span class="at">url =</span> full_url, <span class="at">destfile =</span> full_path, <span class="at">mode =</span> <span class="st">"wb"</span>)</span>
-<span id="cb44-20"><a href=""></a></span>
-<span id="cb44-21"><a href=""></a>  <span class="fu">invisible</span>(full_path)</span>
-<span id="cb44-22"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div></div>
-</section>
-<section id="case-study-from-script-to-function-7" class="slide level2">
-<h2>Case study: From script to function</h2>
-<div class="columns">
-<div class="column" style="width:47%;">
-<p><i class="fa-solid fa-circle-arrow-right" aria-label="circle-arrow-right"></i>&nbsp; Let’s download the <a href="https://gadm.org"><strong>spatial boundary</strong></a> of France</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href=""></a><span class="do">## %</span></span>
-<span id="cb45-2"><a href=""></a></span>
-<span id="cb45-3"><a href=""></a><span class="do">##</span></span>
-<span id="cb45-4"><a href=""></a><span class="do">## DISTANT FILE</span></span>
-<span id="cb45-5"><a href=""></a><span class="do">##</span></span>
-<span id="cb45-6"><a href=""></a></span>
-<span id="cb45-7"><a href=""></a><span class="co"># Base URL ----</span></span>
-<span id="cb45-8"><a href=""></a>base_url <span class="ot">&lt;-</span> <span class="st">"https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/"</span></span>
-<span id="cb45-9"><a href=""></a></span>
-<span id="cb45-10"><a href=""></a><span class="co"># File name ----</span></span>
-<span id="cb45-11"><a href=""></a>file_name <span class="ot">&lt;-</span> <span class="st">"gadm41_FRA.gpkg"</span></span>
-<span id="cb45-12"><a href=""></a></span>
-<span id="cb45-13"><a href=""></a><span class="co"># Full URL ----</span></span>
-<span id="cb45-14"><a href=""></a>(full_url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(base_url, file_name))</span>
-<span id="cb45-15"><a href=""></a><span class="co"># https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/gadm41_FRA.gpkg</span></span>
-<span id="cb45-16"><a href=""></a></span>
-<span id="cb45-17"><a href=""></a><span class="do">##</span></span>
-<span id="cb45-18"><a href=""></a><span class="do">## LOCAL FILE</span></span>
-<span id="cb45-19"><a href=""></a><span class="do">##</span></span>
-<span id="cb45-20"><a href=""></a></span>
-<span id="cb45-21"><a href=""></a><span class="co"># Destination folder ----</span></span>
-<span id="cb45-22"><a href=""></a>(dest_dir <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>))</span>
-<span id="cb45-23"><a href=""></a><span class="co"># /home/nicolas/projects/demo/data</span></span>
-<span id="cb45-24"><a href=""></a></span>
-<span id="cb45-25"><a href=""></a><span class="co"># Destination file ----</span></span>
-<span id="cb45-26"><a href=""></a>(full_path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(dest_dir, file_name))</span>
-<span id="cb45-27"><a href=""></a><span class="co"># /home/nicolas/projects/demo/data/gadm41_FRA.gpkg</span></span>
-<span id="cb45-28"><a href=""></a></span>
-<span id="cb45-29"><a href=""></a><span class="do">##</span></span>
-<span id="cb45-30"><a href=""></a><span class="do">## DOWNLOAD FILE</span></span>
-<span id="cb45-31"><a href=""></a><span class="do">##</span></span>
-<span id="cb45-32"><a href=""></a></span>
-<span id="cb45-33"><a href=""></a><span class="fu">download.file</span>(<span class="at">url =</span> full_url, <span class="at">destfile =</span> full_path, <span class="at">mode =</span> <span class="st">"wb"</span>)</span>
-<span id="cb45-34"><a href=""></a><span class="do">## %</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div><div class="column" style="width:6%;">
-
-</div><div class="column" style="width:47%;">
-<p><i class="fa-solid fa-circle-arrow-right" aria-label="circle-arrow-right"></i>&nbsp; <strong>Add ‘dest_dir’ argument</strong> - <code>v0.7</code></p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href=""></a>download_gadm <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
-<span id="cb46-2"><a href=""></a>  <span class="at">country =</span> <span class="st">"FRA"</span>, </span>
-<span id="cb46-3"><a href=""></a>  <span class="at">dest_dir =</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>)</span>
-<span id="cb46-4"><a href=""></a>) {</span>
-<span id="cb46-5"><a href=""></a>    </span>
-<span id="cb46-6"><a href=""></a>  <span class="co"># Base URL ----</span></span>
-<span id="cb46-7"><a href=""></a>  base_url <span class="ot">&lt;-</span> <span class="st">"https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/"</span></span>
-<span id="cb46-8"><a href=""></a></span>
-<span id="cb46-9"><a href=""></a>  <span class="co"># File name ----</span></span>
-<span id="cb46-10"><a href=""></a>  file_name <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"gadm41_"</span>, country, <span class="st">".gpkg"</span>)</span>
-<span id="cb46-11"><a href=""></a></span>
-<span id="cb46-12"><a href=""></a>  <span class="co"># Full URL ----</span></span>
-<span id="cb46-13"><a href=""></a>  full_url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(base_url, file_name)</span>
-<span id="cb46-14"><a href=""></a></span>
-<span id="cb46-15"><a href=""></a>  <span class="co"># Destination file ----</span></span>
-<span id="cb46-16"><a href=""></a>  full_path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(dest_dir, file_name)</span>
-<span id="cb46-17"><a href=""></a></span>
-<span id="cb46-18"><a href=""></a>  <span class="co"># Download file ----</span></span>
-<span id="cb46-19"><a href=""></a>  <span class="fu">download.file</span>(<span class="at">url =</span> full_url, <span class="at">destfile =</span> full_path, <span class="at">mode =</span> <span class="st">"wb"</span>)</span>
-<span id="cb46-20"><a href=""></a></span>
-<span id="cb46-21"><a href=""></a>  <span class="fu">invisible</span>(full_path)</span>
-<span id="cb46-22"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div></div>
-</section>
-<section id="case-study-from-script-to-function-8" class="slide level2">
-<h2>Case study: From script to function</h2>
-<div class="columns">
-<div class="column" style="width:47%;">
-<p><i class="fa-solid fa-circle-arrow-right" aria-label="circle-arrow-right"></i>&nbsp; Let’s download the <a href="https://gadm.org"><strong>spatial boundary</strong></a> of France</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href=""></a><span class="do">## %</span></span>
-<span id="cb47-2"><a href=""></a></span>
-<span id="cb47-3"><a href=""></a><span class="do">##</span></span>
-<span id="cb47-4"><a href=""></a><span class="do">## DISTANT FILE</span></span>
-<span id="cb47-5"><a href=""></a><span class="do">##</span></span>
-<span id="cb47-6"><a href=""></a></span>
-<span id="cb47-7"><a href=""></a><span class="co"># Base URL ----</span></span>
-<span id="cb47-8"><a href=""></a>base_url <span class="ot">&lt;-</span> <span class="st">"https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/"</span></span>
-<span id="cb47-9"><a href=""></a></span>
-<span id="cb47-10"><a href=""></a><span class="co"># File name ----</span></span>
-<span id="cb47-11"><a href=""></a>file_name <span class="ot">&lt;-</span> <span class="st">"gadm41_FRA.gpkg"</span></span>
-<span id="cb47-12"><a href=""></a></span>
-<span id="cb47-13"><a href=""></a><span class="co"># Full URL ----</span></span>
-<span id="cb47-14"><a href=""></a>(full_url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(base_url, file_name))</span>
-<span id="cb47-15"><a href=""></a><span class="co"># https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/gadm41_FRA.gpkg</span></span>
-<span id="cb47-16"><a href=""></a></span>
-<span id="cb47-17"><a href=""></a><span class="do">##</span></span>
-<span id="cb47-18"><a href=""></a><span class="do">## LOCAL FILE</span></span>
-<span id="cb47-19"><a href=""></a><span class="do">##</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href=""></a>download_gadm <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">country =</span> <span class="st">"FRA"</span>) {</span>
+<span id="cb47-2"><a href=""></a>    </span>
+<span id="cb47-3"><a href=""></a>  <span class="co"># Base URL ----</span></span>
+<span id="cb47-4"><a href=""></a>  base_url <span class="ot">&lt;-</span> <span class="st">"https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/"</span></span>
+<span id="cb47-5"><a href=""></a></span>
+<span id="cb47-6"><a href=""></a>  <span class="co"># File name ----</span></span>
+<span id="cb47-7"><a href=""></a>  file_name <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"gadm41_"</span>, country, <span class="st">".gpkg"</span>)</span>
+<span id="cb47-8"><a href=""></a></span>
+<span id="cb47-9"><a href=""></a>  <span class="co"># Full URL ----</span></span>
+<span id="cb47-10"><a href=""></a>  full_url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(base_url, file_name)</span>
+<span id="cb47-11"><a href=""></a></span>
+<span id="cb47-12"><a href=""></a>  <span class="co"># Destination folder ----</span></span>
+<span id="cb47-13"><a href=""></a>  dest_dir <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>)</span>
+<span id="cb47-14"><a href=""></a></span>
+<span id="cb47-15"><a href=""></a>  <span class="co"># Destination file ----</span></span>
+<span id="cb47-16"><a href=""></a>  full_path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(dest_dir, file_name)</span>
+<span id="cb47-17"><a href=""></a></span>
+<span id="cb47-18"><a href=""></a>  <span class="co"># Download file ----</span></span>
+<span id="cb47-19"><a href=""></a>  <span class="fu">download.file</span>(<span class="at">url =</span> full_url, <span class="at">destfile =</span> full_path, <span class="at">mode =</span> <span class="st">"wb"</span>)</span>
 <span id="cb47-20"><a href=""></a></span>
-<span id="cb47-21"><a href=""></a><span class="co"># Destination folder ----</span></span>
-<span id="cb47-22"><a href=""></a>(dest_dir <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>))</span>
-<span id="cb47-23"><a href=""></a><span class="co"># /home/nicolas/projects/demo/data</span></span>
-<span id="cb47-24"><a href=""></a></span>
-<span id="cb47-25"><a href=""></a><span class="co"># Destination file ----</span></span>
-<span id="cb47-26"><a href=""></a>(full_path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(dest_dir, file_name))</span>
-<span id="cb47-27"><a href=""></a><span class="co"># /home/nicolas/projects/demo/data/gadm41_FRA.gpkg</span></span>
-<span id="cb47-28"><a href=""></a></span>
-<span id="cb47-29"><a href=""></a><span class="do">##</span></span>
-<span id="cb47-30"><a href=""></a><span class="do">## DOWNLOAD FILE</span></span>
-<span id="cb47-31"><a href=""></a><span class="do">##</span></span>
-<span id="cb47-32"><a href=""></a></span>
-<span id="cb47-33"><a href=""></a><span class="fu">download.file</span>(<span class="at">url =</span> full_url, <span class="at">destfile =</span> full_path, <span class="at">mode =</span> <span class="st">"wb"</span>)</span>
-<span id="cb47-34"><a href=""></a><span class="do">## %</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb47-21"><a href=""></a>  <span class="fu">invisible</span>(full_path)</span>
+<span id="cb47-22"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div></div>
+</section>
+<section id="from-script-to-function-7" class="slide level2">
+<h2>From script to function</h2>
+<div class="columns">
+<div class="column" style="width:47%;">
+<p><i class="fa-solid fa-circle-arrow-right" aria-label="circle-arrow-right"></i>&nbsp; Let’s download the <a href="https://gadm.org"><strong>spatial boundary</strong></a> of France</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href=""></a><span class="do">## %</span></span>
+<span id="cb48-2"><a href=""></a></span>
+<span id="cb48-3"><a href=""></a><span class="do">##</span></span>
+<span id="cb48-4"><a href=""></a><span class="do">## DISTANT FILE</span></span>
+<span id="cb48-5"><a href=""></a><span class="do">##</span></span>
+<span id="cb48-6"><a href=""></a></span>
+<span id="cb48-7"><a href=""></a><span class="co"># Base URL ----</span></span>
+<span id="cb48-8"><a href=""></a>base_url <span class="ot">&lt;-</span> <span class="st">"https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/"</span></span>
+<span id="cb48-9"><a href=""></a></span>
+<span id="cb48-10"><a href=""></a><span class="co"># File name ----</span></span>
+<span id="cb48-11"><a href=""></a>file_name <span class="ot">&lt;-</span> <span class="st">"gadm41_FRA.gpkg"</span></span>
+<span id="cb48-12"><a href=""></a></span>
+<span id="cb48-13"><a href=""></a><span class="co"># Full URL ----</span></span>
+<span id="cb48-14"><a href=""></a>(full_url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(base_url, file_name))</span>
+<span id="cb48-15"><a href=""></a><span class="co"># https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/gadm41_FRA.gpkg</span></span>
+<span id="cb48-16"><a href=""></a></span>
+<span id="cb48-17"><a href=""></a><span class="do">##</span></span>
+<span id="cb48-18"><a href=""></a><span class="do">## LOCAL FILE</span></span>
+<span id="cb48-19"><a href=""></a><span class="do">##</span></span>
+<span id="cb48-20"><a href=""></a></span>
+<span id="cb48-21"><a href=""></a><span class="co"># Destination folder ----</span></span>
+<span id="cb48-22"><a href=""></a>(dest_dir <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>))</span>
+<span id="cb48-23"><a href=""></a><span class="co"># /home/nicolas/projects/demo/data</span></span>
+<span id="cb48-24"><a href=""></a></span>
+<span id="cb48-25"><a href=""></a><span class="co"># Destination file ----</span></span>
+<span id="cb48-26"><a href=""></a>(full_path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(dest_dir, file_name))</span>
+<span id="cb48-27"><a href=""></a><span class="co"># /home/nicolas/projects/demo/data/gadm41_FRA.gpkg</span></span>
+<span id="cb48-28"><a href=""></a></span>
+<span id="cb48-29"><a href=""></a><span class="do">##</span></span>
+<span id="cb48-30"><a href=""></a><span class="do">## DOWNLOAD FILE</span></span>
+<span id="cb48-31"><a href=""></a><span class="do">##</span></span>
+<span id="cb48-32"><a href=""></a></span>
+<span id="cb48-33"><a href=""></a><span class="fu">download.file</span>(<span class="at">url =</span> full_url, <span class="at">destfile =</span> full_path, <span class="at">mode =</span> <span class="st">"wb"</span>)</span>
+<span id="cb48-34"><a href=""></a><span class="do">## %</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div><div class="column" style="width:6%;">
 
 </div><div class="column" style="width:47%;">
 <p><i class="fa-solid fa-circle-arrow-right" aria-label="circle-arrow-right"></i>&nbsp; <strong>Add ‘dest_dir’ argument</strong> - <code>v0.7</code></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href=""></a>download_gadm <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
-<span id="cb48-2"><a href=""></a>  <span class="at">country =</span> <span class="st">"FRA"</span>, </span>
-<span id="cb48-3"><a href=""></a>  <span class="at">dest_dir =</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>)</span>
-<span id="cb48-4"><a href=""></a>) {</span>
-<span id="cb48-5"><a href=""></a>    </span>
-<span id="cb48-6"><a href=""></a>  <span class="co"># Base URL ----</span></span>
-<span id="cb48-7"><a href=""></a>  base_url <span class="ot">&lt;-</span> <span class="st">"https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/"</span></span>
-<span id="cb48-8"><a href=""></a></span>
-<span id="cb48-9"><a href=""></a>  <span class="co"># File name ----</span></span>
-<span id="cb48-10"><a href=""></a>  file_name <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"gadm41_"</span>, country, <span class="st">".gpkg"</span>)</span>
-<span id="cb48-11"><a href=""></a></span>
-<span id="cb48-12"><a href=""></a>  <span class="co"># Full URL ----</span></span>
-<span id="cb48-13"><a href=""></a>  full_url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(base_url, file_name)</span>
-<span id="cb48-14"><a href=""></a></span>
-<span id="cb48-15"><a href=""></a>  <span class="co"># Destination file ----</span></span>
-<span id="cb48-16"><a href=""></a>  full_path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(dest_dir, file_name)</span>
-<span id="cb48-17"><a href=""></a></span>
-<span id="cb48-18"><a href=""></a>  <span class="co"># Download file ----</span></span>
-<span id="cb48-19"><a href=""></a>  <span class="fu">download.file</span>(<span class="at">url =</span> full_url, <span class="at">destfile =</span> full_path, <span class="at">mode =</span> <span class="st">"wb"</span>)</span>
-<span id="cb48-20"><a href=""></a></span>
-<span id="cb48-21"><a href=""></a>  <span class="fu">invisible</span>(full_path)</span>
-<span id="cb48-22"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href=""></a>download_gadm <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<span id="cb49-2"><a href=""></a>  <span class="at">country =</span> <span class="st">"FRA"</span>, </span>
+<span id="cb49-3"><a href=""></a>  <span class="at">dest_dir =</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>)</span>
+<span id="cb49-4"><a href=""></a>) {</span>
+<span id="cb49-5"><a href=""></a>    </span>
+<span id="cb49-6"><a href=""></a>  <span class="co"># Base URL ----</span></span>
+<span id="cb49-7"><a href=""></a>  base_url <span class="ot">&lt;-</span> <span class="st">"https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/"</span></span>
+<span id="cb49-8"><a href=""></a></span>
+<span id="cb49-9"><a href=""></a>  <span class="co"># File name ----</span></span>
+<span id="cb49-10"><a href=""></a>  file_name <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"gadm41_"</span>, country, <span class="st">".gpkg"</span>)</span>
+<span id="cb49-11"><a href=""></a></span>
+<span id="cb49-12"><a href=""></a>  <span class="co"># Full URL ----</span></span>
+<span id="cb49-13"><a href=""></a>  full_url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(base_url, file_name)</span>
+<span id="cb49-14"><a href=""></a></span>
+<span id="cb49-15"><a href=""></a>  <span class="co"># Destination file ----</span></span>
+<span id="cb49-16"><a href=""></a>  full_path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(dest_dir, file_name)</span>
+<span id="cb49-17"><a href=""></a></span>
+<span id="cb49-18"><a href=""></a>  <span class="co"># Download file ----</span></span>
+<span id="cb49-19"><a href=""></a>  <span class="fu">download.file</span>(<span class="at">url =</span> full_url, <span class="at">destfile =</span> full_path, <span class="at">mode =</span> <span class="st">"wb"</span>)</span>
+<span id="cb49-20"><a href=""></a></span>
+<span id="cb49-21"><a href=""></a>  <span class="fu">invisible</span>(full_path)</span>
+<span id="cb49-22"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div></div>
+</section>
+<section id="from-script-to-function-8" class="slide level2">
+<h2>From script to function</h2>
+<div class="columns">
+<div class="column" style="width:47%;">
+<p><i class="fa-solid fa-circle-arrow-right" aria-label="circle-arrow-right"></i>&nbsp; Let’s download the <a href="https://gadm.org"><strong>spatial boundary</strong></a> of France</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href=""></a><span class="do">## %</span></span>
+<span id="cb50-2"><a href=""></a></span>
+<span id="cb50-3"><a href=""></a><span class="do">##</span></span>
+<span id="cb50-4"><a href=""></a><span class="do">## DISTANT FILE</span></span>
+<span id="cb50-5"><a href=""></a><span class="do">##</span></span>
+<span id="cb50-6"><a href=""></a></span>
+<span id="cb50-7"><a href=""></a><span class="co"># Base URL ----</span></span>
+<span id="cb50-8"><a href=""></a>base_url <span class="ot">&lt;-</span> <span class="st">"https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/"</span></span>
+<span id="cb50-9"><a href=""></a></span>
+<span id="cb50-10"><a href=""></a><span class="co"># File name ----</span></span>
+<span id="cb50-11"><a href=""></a>file_name <span class="ot">&lt;-</span> <span class="st">"gadm41_FRA.gpkg"</span></span>
+<span id="cb50-12"><a href=""></a></span>
+<span id="cb50-13"><a href=""></a><span class="co"># Full URL ----</span></span>
+<span id="cb50-14"><a href=""></a>(full_url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(base_url, file_name))</span>
+<span id="cb50-15"><a href=""></a><span class="co"># https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/gadm41_FRA.gpkg</span></span>
+<span id="cb50-16"><a href=""></a></span>
+<span id="cb50-17"><a href=""></a><span class="do">##</span></span>
+<span id="cb50-18"><a href=""></a><span class="do">## LOCAL FILE</span></span>
+<span id="cb50-19"><a href=""></a><span class="do">##</span></span>
+<span id="cb50-20"><a href=""></a></span>
+<span id="cb50-21"><a href=""></a><span class="co"># Destination folder ----</span></span>
+<span id="cb50-22"><a href=""></a>(dest_dir <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>))</span>
+<span id="cb50-23"><a href=""></a><span class="co"># /home/nicolas/projects/demo/data</span></span>
+<span id="cb50-24"><a href=""></a></span>
+<span id="cb50-25"><a href=""></a><span class="co"># Destination file ----</span></span>
+<span id="cb50-26"><a href=""></a>(full_path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(dest_dir, file_name))</span>
+<span id="cb50-27"><a href=""></a><span class="co"># /home/nicolas/projects/demo/data/gadm41_FRA.gpkg</span></span>
+<span id="cb50-28"><a href=""></a></span>
+<span id="cb50-29"><a href=""></a><span class="do">##</span></span>
+<span id="cb50-30"><a href=""></a><span class="do">## DOWNLOAD FILE</span></span>
+<span id="cb50-31"><a href=""></a><span class="do">##</span></span>
+<span id="cb50-32"><a href=""></a></span>
+<span id="cb50-33"><a href=""></a><span class="fu">download.file</span>(<span class="at">url =</span> full_url, <span class="at">destfile =</span> full_path, <span class="at">mode =</span> <span class="st">"wb"</span>)</span>
+<span id="cb50-34"><a href=""></a><span class="do">## %</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div><div class="column" style="width:6%;">
+
+</div><div class="column" style="width:47%;">
+<p><i class="fa-solid fa-circle-arrow-right" aria-label="circle-arrow-right"></i>&nbsp; <strong>Add ‘dest_dir’ argument</strong> - <code>v0.7</code></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href=""></a>download_gadm <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<span id="cb51-2"><a href=""></a>  <span class="at">country =</span> <span class="st">"FRA"</span>, </span>
+<span id="cb51-3"><a href=""></a>  <span class="at">dest_dir =</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>)</span>
+<span id="cb51-4"><a href=""></a>) {</span>
+<span id="cb51-5"><a href=""></a>    </span>
+<span id="cb51-6"><a href=""></a>  <span class="co"># Base URL ----</span></span>
+<span id="cb51-7"><a href=""></a>  base_url <span class="ot">&lt;-</span> <span class="st">"https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/"</span></span>
+<span id="cb51-8"><a href=""></a></span>
+<span id="cb51-9"><a href=""></a>  <span class="co"># File name ----</span></span>
+<span id="cb51-10"><a href=""></a>  file_name <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"gadm41_"</span>, country, <span class="st">".gpkg"</span>)</span>
+<span id="cb51-11"><a href=""></a></span>
+<span id="cb51-12"><a href=""></a>  <span class="co"># Full URL ----</span></span>
+<span id="cb51-13"><a href=""></a>  full_url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(base_url, file_name)</span>
+<span id="cb51-14"><a href=""></a></span>
+<span id="cb51-15"><a href=""></a>  <span class="co"># Destination file ----</span></span>
+<span id="cb51-16"><a href=""></a>  full_path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(dest_dir, file_name)</span>
+<span id="cb51-17"><a href=""></a></span>
+<span id="cb51-18"><a href=""></a>  <span class="co"># Download file ----</span></span>
+<span id="cb51-19"><a href=""></a>  <span class="fu">download.file</span>(<span class="at">url =</span> full_url, <span class="at">destfile =</span> full_path, <span class="at">mode =</span> <span class="st">"wb"</span>)</span>
+<span id="cb51-20"><a href=""></a></span>
+<span id="cb51-21"><a href=""></a>  <span class="fu">invisible</span>(full_path)</span>
+<span id="cb51-22"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><br></p>
 <div class="small">
@@ -1578,16 +1642,57 @@ Author name<br/>
 </section>
 <section id="documenting-a-function" class="slide level2">
 <h2>Documenting a function</h2>
-<p>…</p>
+<div class="columns">
+<div class="column" style="width:25%;">
+<p><img data-src="images/roxygen2-logo.png" style="width:70.0%"></p>
+</div><div class="column" style="width:75%;">
+<ul>
+<li>Specially-structured <strong>comments preceding</strong> each function definition</li>
+<li><strong>Lightweight syntax</strong> easy to write and to read</li>
+<li>Syntax: <strong><code>#' @field value</code></strong></li>
+<li>Keep function definition and documentation in the same file</li>
+<li>Automatically write <code>.Rd</code> files (in <code>man/</code>) and <code>NAMESPACE</code> w/ <code>devtools::document()</code></li>
+</ul>
+<p><i class="fa-solid fa-circle-right" aria-label="circle-right"></i> &nbsp;Get started w/ <code>roxygen2</code>: <a href="https://cran.r-project.org/web/packages/roxygen2/vignettes/roxygen2.html"><strong>here</strong></a></p>
+</div></div>
+<div class="fragment">
+<div class="columns">
+<div class="column" style="width:50%;">
+
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href=""></a><span class="co">#' Compute the arithmetic mean</span></span>
+<span id="cb52-2"><a href=""></a><span class="co">#'</span></span>
+<span id="cb52-3"><a href=""></a><span class="co">#' @description</span></span>
+<span id="cb52-4"><a href=""></a><span class="co">#' This function computes the arithmetic mean of a numeric variable.</span></span>
+<span id="cb52-5"><a href=""></a><span class="co">#'</span></span>
+<span id="cb52-6"><a href=""></a><span class="co">#' @param x a `numeric` vector</span></span>
+<span id="cb52-7"><a href=""></a><span class="co">#'</span></span>
+<span id="cb52-8"><a href=""></a><span class="co">#' @return A `numeric` value representing the arithmetic mean of `x`.</span></span>
+<span id="cb52-9"><a href=""></a><span class="co">#'</span></span>
+<span id="cb52-10"><a href=""></a><span class="co">#' @export</span></span>
+<span id="cb52-11"><a href=""></a><span class="co">#'</span></span>
+<span id="cb52-12"><a href=""></a><span class="co">#' @examples</span></span>
+<span id="cb52-13"><a href=""></a><span class="co">#' x &lt;- 1:10</span></span>
+<span id="cb52-14"><a href=""></a><span class="co">#' arithmetic_mean(x)</span></span>
+<span id="cb52-15"><a href=""></a></span>
+<span id="cb52-16"><a href=""></a>arithmetic_mean <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb52-17"><a href=""></a>  </span>
+<span id="cb52-18"><a href=""></a>  <span class="fu">sum</span>(x) <span class="sc">/</span> <span class="fu">length</span>(x)</span>
+<span id="cb52-19"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div></div>
+</div>
 </section>
 <section id="resources" class="slide level2">
 <h2>Resources</h2>
 <ul>
-<li><a href="https://adv-r.hadley.nz/functions.html" class="uri">https://adv-r.hadley.nz/functions.html</a></li>
-<li><a href="https://r4ds.hadley.nz/functions.html" class="uri">https://r4ds.hadley.nz/functions.html</a></li>
+<li>Wickham H (2023) <strong>Chap. 25: Functions</strong>. In <em>R for Data Science</em>, (2<sup>nd</sup> ed.). <a href="https://r4ds.hadley.nz/functions.html">Online book</a></li>
+<li>Wickham H (2019) <strong>Chap. 6: Functions</strong>. In <em>Advanced R</em>, (2<sup>nd</sup> ed.). <a href="https://adv-r.hadley.nz/functions.html">Online book</a></li>
+<li>Wickham H &amp; Bryan J (2023) <strong>Chap. 16: Function documentation</strong>. In <em>R Packages</em>, (2<sup>nd</sup> ed.). <a href="https://r-pkgs.org/man.html">Online book</a></li>
 </ul>
 
-</section>
+</section></section>
 
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">

@@ -2,7 +2,7 @@
 
 . . .
 
-> A function is a **block of code** organized together to perform a specific task and only runs when it is called. It can have **parameters** and can **return** a result.
+> A function is a **block of code** organized together to perform a **specific task** and only runs when it is called. It can have **parameters** and can **return** a result.
 
 <br/>
 
@@ -63,6 +63,44 @@ _and/or_
 :::
 
 
+## Writing a function
+
+:::: {.columns}
+
+::: {.column width=45%}
+```{r}
+#| echo: true
+#| eval: false
+
+## Function definition ----
+
+function_name <- function(input) {
+  
+  # Body 
+  # of the function
+  
+  return(output)
+}
+```
+:::
+
+::: {.column width=10%}
+:::
+
+::: {.column width=45%}
+- A function is defined by calling **`function()`**
+- A function can have a (evocative) **name**[^anonym]
+- A function can have 0, 1 or many **arguments** (inputs)
+- A function can **return** a value (output) 
+:::
+
+::::
+
+
+
+[^anonym]: In {{< fa brands r-project >}}&nbsp; there is also **anonymous functions** (also known as **lambda functions**):<br />`function(x) sum(x) / length(x)`<br />or in short: `\(x) sum(x) / length(x)`
+
+
 
 ## Writing a function
 
@@ -98,22 +136,31 @@ function_name <- function(input) {
 ::::
 
 
+
+<br /><br /><br />
+
+::: {.boxed}
+Always **save your functions in** the folder **`R/`**[^rfolder]
+:::
+
+
 [^anonym]: In {{< fa brands r-project >}}&nbsp; there is also **anonymous functions** (also known as **lambda functions**):<br />`function(x) sum(x) / length(x)`<br />or in short: `\(x) sum(x) / length(x)`
 
-. . .
+[^rfolder]: The folder **`R/`** must contain **only functions** (no script)
 
 
-<br/><br/>
-
-{{< fa circle-arrow-right >}}&nbsp; A **two-step** process
-
-<br/>
+## Writing a function
 
 :::: {.columns}
 
 ::: {.column width=45%}
-**1. Definition** of the function
+**1. Define** the function
+:::
 
+::: {.column width=10%}
+:::
+
+::: {.column width=45%}
 ```{r}
 #| echo: true
 #| eval: false
@@ -129,12 +176,48 @@ arithmetic_mean <- function(x) {
 ```
 :::
 
+::::
+
+. . .
+
+<br />
+
+:::: {.columns}
+
+::: {.column width=45%}
+**2. Save & source** the file
+:::
+
 ::: {.column width=10%}
 :::
 
 ::: {.column width=45%}
-**2. Call** of the function
+```{r}
+#| echo: true
+#| eval: false
 
+## Function load ----
+
+source(here::here("R", "arithmetic-mean.R"))
+```
+:::
+
+::::
+
+. . .
+
+<br />
+
+:::: {.columns}
+
+::: {.column width=45%}
+**3. Use (call)** the function
+:::
+
+::: {.column width=10%}
+:::
+
+::: {.column width=45%}
 ```{r}
 #| echo: true
 #| eval: false
@@ -146,6 +229,13 @@ arithmetic_mean(x = c(4, 6, 5, 10))
 :::
 
 ::::
+
+. . .
+
+<br /><br />
+
+{{< fa circle-arrow-right >}}&nbsp; Do not forget to **source the file each time** you modify the function
+
 
 
 
@@ -469,8 +559,7 @@ For instance,
 
 - a function that downloads / saves a file on the disk
 - a function that creates a plot (w/ `graphics`)
-- a function that modifies a global option
-- ...
+- a function that modifies a global option, ...
 
 . . .
 
@@ -1088,7 +1177,7 @@ y
 
 ::: {.column width=45%}
 
-{{< fa circle-arrow-right >}}&nbsp; Object created inside the **`global environment`** **is accessible** from the function
+{{< fa circle-arrow-right >}}&nbsp; Object created in the **`global environment`** **is accessible** from the function
 
 :::
 
@@ -1864,6 +1953,109 @@ download_gadm <- function(
 
 ::::
 
+## From script to function
+
+:::: {.columns}
+
+::: {.column width=47%}
+
+{{< fa circle-arrow-right >}}&nbsp; Let's download the [**spatial boundary**](https://gadm.org) of France
+
+```{r}
+#| echo: true
+#| eval: false
+
+## %
+
+##
+## DISTANT FILE
+##
+
+# Base URL ----
+base_url <- "https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/"
+
+# File name ----
+file_name <- "gadm41_FRA.gpkg"
+
+# Full URL ----
+(full_url <- paste0(base_url, file_name))
+# https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/gadm41_FRA.gpkg
+
+##
+## LOCAL FILE
+##
+
+# Destination folder ----
+(dest_dir <- here::here("data"))
+# /home/nicolas/projects/demo/data
+
+# Destination file ----
+(full_path <- file.path(dest_dir, file_name))
+# /home/nicolas/projects/demo/data/gadm41_FRA.gpkg
+
+##
+## DOWNLOAD FILE
+##
+
+download.file(url = full_url, destfile = full_path, mode = "wb")
+## %
+```
+
+:::
+
+::: {.column width=6%}
+:::
+
+
+::: {.column width=47%}
+
+
+{{< fa circle-arrow-right >}}&nbsp; **Add 'dest_dir' argument** - `v0.7`
+
+```{r}
+#| echo: true
+#| eval: false
+
+download_gadm <- function(
+  country = "FRA", 
+  dest_dir = here::here("data")
+) {
+    
+  # Base URL ----
+  base_url <- "https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/"
+
+  # File name ----
+  file_name <- paste0("gadm41_", country, ".gpkg")
+
+  # Full URL ----
+  full_url <- paste0(base_url, file_name)
+
+  # Destination file ----
+  full_path <- file.path(dest_dir, file_name)
+
+  # Download file ----
+  download.file(url = full_url, destfile = full_path, mode = "wb")
+
+  invisible(full_path)
+}
+```
+
+<br />
+
+{{< fa circle-arrow-right >}}&nbsp; **Easy to use** now!
+
+```{r}
+#| echo: true
+#| eval: false
+
+download_gadm(country = "FRA")
+download_gadm(country = "MEX", dest_dir = here::here("data", "gadm"))
+```
+:::
+
+::::
+
+
 
 ## From script to function
 
@@ -1968,6 +2160,22 @@ download_gadm <- function(
 :::
 
 ::::
+
+
+## Documenting a function
+
+:::: {.columns}
+
+::: {.column width=25%}
+![](images/roxygen2-logo.png){width=70%}
+:::
+
+::: {.column width=75%}
+:::
+
+::::
+
+
 
 ## Documenting a function
 

@@ -128,7 +128,7 @@ function_name <- function(input) {
 
 ::: {.column width=45%}
 - A function is defined by calling **`function()`**
-- A function can have a (evocative) **name**[^anonym]
+- A function can have a (evocative) **name**
 - A function can have 0, 1 or many **arguments** (inputs)
 - A function can **return** a value (output) 
 :::
@@ -143,8 +143,6 @@ function_name <- function(input) {
 Always **save your functions in** the folder **`R/`**[^rfolder]
 :::
 
-
-[^anonym]: In {{< fa brands r-project >}}&nbsp; there is also **anonymous functions** (also known as **lambda functions**):<br />`function(x) sum(x) / length(x)`<br />or in short: `\(x) sum(x) / length(x)`
 
 [^rfolder]: The folder **`R/`** must contain **only functions** (no script)
 
